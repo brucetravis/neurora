@@ -52,7 +52,7 @@ export default function Header() {
           className='hamburger-icon'
           onClick={() => setMenuOpen(!menuOpen)}
         >
-          {menuOpen ? <X size={25} stroke="#222222" /> : <Menu size={25} stroke="#222" />}
+          {menuOpen ? <X size={25} stroke="#fff" /> : <Menu size={25} stroke="#fff" />}
         </div>
         
         <animated.div 
@@ -66,7 +66,7 @@ export default function Header() {
 
           <X 
             size={25} 
-            stroke="#222222"
+            stroke="#fff"
             onClick={() => setMenuOpen(!menuOpen)}
             className='close-nav' 
           />
