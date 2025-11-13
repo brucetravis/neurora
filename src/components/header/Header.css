@@ -41,8 +41,17 @@
 
 /* CTA Button */
 .navbar .btn-primary {
-    font-size: 1rem;
+    background-color: #c87cff;
+    color: #000;
+    font-size: 1.125rem;
     padding: 0.6rem 1.5rem;
+}
+
+
+.navbar .btn-primary:hover {
+    background-color: #9b33e0;
+    transform: translateX(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 /*  Initiall hide the hamburger icon */
@@ -59,13 +68,33 @@
     right: 0;
     width: 70%;
     height: 100%;
-    background-color: #fff;
+    /* background-color: #fff; */
+    /* background-color: #1a001f; */
     padding: 2rem;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    font-size: 1.2rem;
+    color: #fff;
     box-shadow: -2px 0 12px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(12px);
+    background: rgba(26, 0, 31, 0.95);
+    text-decoration: none;
+    transition: color 0.3s ease transform 0.3s ease;
     z-index: 999;
+}
+
+
+.navbar .mobile-menu a {
+    display: block;
+    /* padding: 0.5rem 0; */
+    /* font-size: 1.25rem; */
+    color: #fff;
+    text-decoration: none;
+}
+.navbar .mobile-menu a:hover {
+    color: #c87cff; /* Bright purple on hover */
+    transform: translateY(-2px)
 }
 
 
