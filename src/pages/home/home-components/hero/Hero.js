@@ -1,21 +1,67 @@
-// Hero.jsx
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Hero.css';
+import { useSpring, animated } from '@react-spring/web';
+import StarField from '../../../../components/starfield/StarField';
 
 export default function Hero() {
+
+  // function for the hero title spring
+  const heroTitleSpring= useSpring({
+    opacity: 1,
+    transform: 'translateY(0px)',
+    from: { opacity: 0, transform: 'translateY(20px)' },
+    config: { tension: 200, friction: 20 },
+  })
+
+  // function for the text
+  const heroTextSpring = useSpring({
+    opacity: 1,
+    transform: 'translateY(0px)',
+    from: { opacity: 0, transform: 'translateY(20px)' },
+    delay: 250, //staggered paragraph comes slightly after the heading
+    config: { tension: 200, friction: 20 }
+  })
+
+  // state to control what happends when we hover over the stars
+  const [ mousePos, setMousePos ] = useState({ x: 0.5, y: 0.5 })
+
+  // track the mouse movement
+  useEffect(() => {
+    
+    // function to control the mouse hovering
+    const handleMouseMove = (e) => {
+      const x = e.clientX / window.innerWidth;
+      const y = e.clientX / window.innerHeight;
+      setMousePos({ x, y })
+    }
+
+    window.addEventListener('mousemove', handleMouseMove)
+    return () => window.removeEventListener('mousemove', handleMouseMove)
+
+  }, []) // empty dependency array
+
+
   return (
     <section className="hero">
+      <div className="overlay"></div>
+
+      <StarField count={500} mousePos={mousePos} /> {/* Dynamic stars */}
+      
       <div className="hero-content">
-        <h1>Revolutionize Your Business with AI-Integrated Software</h1>
-        <p>
-          Discover how AI-powered solutions can streamline your workflows, 
-          enhance decision-making, and unlock new opportunities. 
-          Neurora combines intelligent automation with cutting-edge technology 
-          to bring efficiency and innovation to your fingertips.
-        </p>
-      </div>
-      <div className="hero-image">
-        {/* Optional: Illustration or image representing AI */}
+
+        <animated.h3 style={heroTitleSpring}>
+          Welcome to Neurora
+        </animated.h3>
+        
+        <animated.h1 style={heroTitleSpring}>
+          Empowering the Future with <span className="highlight">Intelligent Software</span>
+        </animated.h1>
+
+        <animated.p style={heroTextSpring}>
+          At Neurora, we fuse artificial intelligence with human creativity —
+          crafting systems that think, adapt, and evolve with your business.
+        </animated.p>
+
       </div>
     </section>
   );
