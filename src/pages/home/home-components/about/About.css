@@ -1,0 +1,51 @@
+.about {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6rem 2rem;
+    background: #e7def8; /* Light lavender background for contrast */
+    text-align: center;
+    min-height: 60vh;
+}
+
+.about-content {
+    max-width: 800px;
+    color: #333; /* Dark gray text for readability */
+}
+
+.about h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #7d3aff; /* Muted violet accent for section label */
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+.about h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #4a0a7f; /* Dark violet heading for strong contrast */
+}
+
+.about p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #555; /* Slightly lighter dark gray for paragraph */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .about {
+        padding: 4rem 1rem;
+    }
+
+    .about h1 {
+        font-size: 2rem;
+    }
+
+    .about p {
+        font-size: 1rem;
+    }
+}
