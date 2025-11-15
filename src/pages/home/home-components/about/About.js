@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import './About.css'
-import { useSpring, animated } from '@react-spring/web'
 // import HologramSphere from '../../../../components/hologramsphere/HologramSphere'
 import RobotGif from '../../../../videos/robot-unscreen.gif'
-import { Canvas, useFrame } from '@react-three/fiber'
-import { useTexture } from '@react-three/drei'
-import * as THREE from 'three';
+// import { Canvas, useFrame } from '@react-three/fiber'
+// import { useTexture } from '@react-three/drei'
+// import * as THREE from 'three';
 
 // function FloatingGif() {
   
@@ -54,27 +53,33 @@ import * as THREE from 'three';
 //     </group>
 //   )
 // }
+import { useSpring, animated, useInView } from '@react-spring/web'
+// import HologramSphere from '../../../../components/hologramsphere/HologramSphere'
 
 export default function About() {
 
+  // states to control the section view
+  const [ ref, inView ] = useInView({ triggerOnce: true, threshold: 0.2 })
+
   // // stagger: title then paragraph
   const titleSpring = useSpring({
-    from: { opacity: 0, transform: 'translateY(12px)' },
-    to: { opacity: 1, transform: 'translateY(0px)' },
-    config: { opacity: 0, transform: 'translateY(12px)' },
+    opacity: inView ? 1 : 0,
+    transform: inView ? 'translateY(0px)' : 'translateY(12px)',
+    config: { tension: 200, friction: 22 },
     delay: 150
-  })
+  });
 
   const paraSpring = useSpring({
-    from: { opacity: 0, transform: 'translateY(12px)' },
-    to: { opacity: 1, transform: 'translateY(0px)' },
+    opacity: inView ? 1 : 0,
+    transform: inView ? 'translateY(0px)' : 'translateY(12px)',
     config: { tension: 200, friction: 22 },
     delay: 400
-  })
+  });
+
 
 
   return (
-    <section className="about-hero" aria-labelledby='about-title'>
+    <section className="about-hero" aria-labelledby='about-title' ref={ref}>
       
       <animated.h4 style={titleSpring} id="about-title" className="about-kicker">
         ABOUT NEURORA
