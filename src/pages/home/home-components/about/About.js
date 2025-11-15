@@ -77,6 +77,12 @@ export default function About() {
   });
 
 
+  const imageSpring = useSpring({
+    opacity: inView ? 1 : 0,
+    transform: inView ? 'transformX(0px)' : 'transformX(-30px)',
+    config: { tension: 200, friction: 22 },
+    delay: 250
+  })
 
   return (
     <section className="about-hero" aria-labelledby='about-title' ref={ref}>
@@ -98,10 +104,11 @@ export default function About() {
         >
           {/* <HologramSphere /> */}
 
-          <img 
+          <animated.img 
             src={RobotGif} 
             alt="Robot animation" 
-            style={{ 
+            style={{
+              ...imageSpring,
               width: "100%", 
               height: "100%", 
               objectFit: "cover" 
