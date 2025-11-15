@@ -57,11 +57,21 @@
 
 /* Left hologram column */
 .about-left {
-  display: flex;
+  /* display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center; */
   /* min-height: 380px; */
+  /* background-image: url(../../../../videos/robot-unscreen.gif);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat; */
 }
+
+/* .about-left canvas {
+  filter: drop-shadow(0 0 20px #00ffff);
+  border-radius: 1rem;
+} */
+
 
 /* Right content */
 .about-right { color: #eaeaf2; }

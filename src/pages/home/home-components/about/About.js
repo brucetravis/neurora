@@ -1,7 +1,59 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './About.css'
 import { useSpring, animated } from '@react-spring/web'
-import HologramSphere from '../../../../components/hologramsphere/HologramSphere'
+// import HologramSphere from '../../../../components/hologramsphere/HologramSphere'
+import RobotGif from '../../../../videos/robot-unscreen.gif'
+import { Canvas, useFrame } from '@react-three/fiber'
+import { useTexture } from '@react-three/drei'
+import * as THREE from 'three';
+
+// function FloatingGif() {
+  
+//   const meshRef = React.useRef()
+//   const texture = useTexture(RobotGif)
+  
+
+//   useFrame(({ clock }) => {
+//     const t = clock.getElapsedTime()
+
+//     // Floating motion
+//     meshRef.current.position.y = Math.sin(t * 1.5) * 0.15
+//     // meshRef.current.position.y = Math.sin(t * 0.3) * 0.3
+//     meshRef.current.rotation.y = Math.sin(t * 0.5) * 0.1;
+  
+//     // Pulsing glow for the hologram
+//     meshRef.current.children[0].material.opacity = 0.1 + Math.sin(t * 3) * 0.05;
+//   })
+
+
+//   return (
+//     // <mesh ref={meshRef}>
+//     //   <planeGeometry args={[9, 10]} />
+//     //   <meshBasicMaterial map={texture} transparent />
+
+
+//     // </mesh>
+//     <group ref={meshRef}>
+//       {/* Hologram glow plane */}
+//       <mesh scale={[1.1, 1.1, 1]}>
+//         <planeGeometry args={[9, 10]} />
+//         <meshBasicMaterial
+//           color="#00ffff"
+//           transparent
+//           opacity={0.15}
+//           toneMapped={false}
+//           blending={THREE.AdditiveBlending}
+//         />
+//       </mesh>
+
+//       {/* Robot GIF plane */}
+//       <mesh>
+//         <planeGeometry args={[9, 10]} />
+//         <meshBasicMaterial map={texture} transparent />
+//       </mesh>
+//     </group>
+//   )
+// }
 
 export default function About() {
 
@@ -31,8 +83,32 @@ export default function About() {
       <div
         className='about-inner container'
       >
-        <div className='about-left col-md-6 col-lg-6'>
-          <HologramSphere />
+        <div 
+          className='about-left col-md-6 col-lg-6'
+          // style={{ 
+          //   backgroundImage: `url(${RobotGif})`,
+          //   backgroundSize: "cover", 
+          //   backgroundPosition: "center" 
+          // }}
+        >
+          {/* <HologramSphere /> */}
+
+          <img 
+            src={RobotGif} 
+            alt="Robot animation" 
+            style={{ 
+              width: "100%", 
+              height: "100%", 
+              objectFit: "cover" 
+            }} 
+          />
+
+          {/* <Canvas style={{ width: "100%", height: "400px" }}>
+            <ambientLight intensity={1} />
+            <FloatingGif />
+          </Canvas> */}
+
+
         </div>
 
         <div
