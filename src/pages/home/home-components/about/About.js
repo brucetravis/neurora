@@ -79,7 +79,8 @@ export default function About() {
 
   const imageSpring = useSpring({
     opacity: inView ? 1 : 0,
-    transform: inView ? 'transformX(0px)' : 'transformX(-30px)',
+    transform: inView ? 'translateX(0px)' : 'translateX(-30px)',
+    // transform: inView ? 'transformX(0px)' : 'transformX(-30px)',
     config: { tension: 200, friction: 22 },
     delay: 250
   })
