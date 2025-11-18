@@ -40,23 +40,23 @@
 
 
 .whyus-title {
-    color: rgba(200,124,255,0.9);
-    letter-spacing: 2px;
-    font-weight: 700;
-    margin: 0 0 0.6rem 0;
-    margin-bottom: 12vh;
-    font-size: 0.85rem;
-    text-align: center;
-    text-transform: uppercase;
+  color: rgba(200,124,255,0.9);
+  letter-spacing: 2px;
+  font-weight: 700;
+  margin: 0 0 0.6rem 0;
+  margin-bottom: 12vh;
+  font-size: 0.85rem;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .whyus-heading {
-    margin: 0 0 1rem 0;
-    font-size: 3rem;
-    line-height: 1.08;
-    color: #fff;
-    text-align: center;
-    text-shadow: 0 6px 30px rgba(19,6,34,0.6);
+  margin: 0 0 1rem 0;
+  font-size: 3rem;
+  line-height: 1.08;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 6px 30px rgba(19,6,34,0.6);
 }
 
 .whyus-heading .accent {
@@ -78,7 +78,7 @@
 }
 
 .whyus-point {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   margin-bottom: 1.5rem;
   padding: 1rem 1.5rem;
   background: rgba(25,6,54,0.6);
