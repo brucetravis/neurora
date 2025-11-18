@@ -5,6 +5,7 @@ import About from './home-components/about/About'
 import Services from './home-components/services/Services'
 import WhyUs from './home-components/whyus/WhyUs'
 import Pricing from './home-components/pricing/Pricing'
+import Contact from './home-components/contact/Contact'
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
         <Services />
         <WhyUs />
         <Pricing />
+        <Contact />
     </div>
   )
 }
