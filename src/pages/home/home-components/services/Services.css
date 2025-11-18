@@ -57,10 +57,10 @@
 
 .services-heading {
   margin: 0 0 1rem 0;
-  font-size: 2.75rem;
-  line-height: 1.1;
+  font-size: 3rem;
+  line-height: 1.08;
   color: #fff;
-  text-shadow: 0 6px 20px rgba(19,6,34,0.5);
+  text-shadow: 0 6px 20px rgba(19,6,34,0.6);
   text-align: center;
 }
 
@@ -71,6 +71,7 @@
   font-size: 1.125rem;
   line-height: 1.7;
   margin: 0 auto 3rem auto;
+  margin-top: 1.5rem;
   text-align: center;
 }
 
