@@ -96,7 +96,7 @@ export default function About() {
         className='about-inner container'
       >
         <div 
-          className='about-left col-md-6 col-lg-6'
+          className='about-left col-md-6 col-lg-6 col-sm-12'
           // style={{ 
           //   backgroundImage: `url(${RobotGif})`,
           //   backgroundSize: "cover", 
@@ -125,7 +125,7 @@ export default function About() {
         </div>
 
         <div
-          className='about-right col-md-6 col-lg-6'
+          className='about-right col-md-6 col-lg-6 col-sm-12'
         >
 
           <animated.h2 style={titleSpring} className="about-heading" >
