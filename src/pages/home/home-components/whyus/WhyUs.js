@@ -108,7 +108,7 @@ export default function WhyUs() {
               AI-Driven Solutions That Scale <span className="accent">Your Business</span>
             </animated.h2>
 
-            <div className="whyus-inner container">
+            <div className="whyus-inner">
               <div className="whyus-left">
                   <Canvas style={{ width: '100%', height: '400px' }}>
                   <ambientLight intensity={1} />
