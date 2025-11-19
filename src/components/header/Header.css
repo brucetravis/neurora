@@ -72,8 +72,7 @@
     right: 0;
     width: 70%;
     height: 100%;
-    /* background-color: #fff; */
-    /* background-color: #1a001f; */
+    background-color: #1a001f;
     padding: 2rem;
     display: flex;
     flex-direction: column;
