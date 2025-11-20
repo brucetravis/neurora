@@ -45,6 +45,7 @@ export default function Header() {
 
   }, [lastScrollY])
 
+
   // React spring animation function
   const menuAnimation = useSpring({
     transform: menuOpen ? `translateX(0%)` : `translateX(100%)`,
@@ -81,8 +82,17 @@ export default function Header() {
 
   const AnimatedLink = animated(Link)
 
+  const headerSpring = useSpring({
+    transform: showHeader ? 'translateY(0%)' : 'translateY(-100%)',
+    config: { tension: 220, friction: 20}
+  })
+  
+
   return (
-    <header>
+    <animated.header 
+      style={headerSpring}
+      className={ showHeader ? 'header-visible' : 'header-hidden'}
+    >
       <nav className="navbar">
         <div className="logo">
           <Link to="/">Neurora</Link>
@@ -186,7 +196,7 @@ export default function Header() {
         </button>
         
       </nav>
-    </header>
+    </animated.header>
   );
 }
 
