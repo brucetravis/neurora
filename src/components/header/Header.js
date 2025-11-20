@@ -45,7 +45,6 @@ export default function Header() {
   function useLinkSpring(isActive) {
     return useSpring({
       color: isActive ? '#c87cff' : '#fff', // purple when active, white when not
-      textShadow: isActive ? '0 0 6px #c87cff, 0 0 12px #d5a0fa' : '0 0 0px #000', // glow when active
       config: { tension: 200, friction: 20 } // smooth spring
     })
   }
@@ -61,6 +60,7 @@ export default function Header() {
         <div className="nav-links">
           <AnimatedLink 
             to="/"
+            className={activeSection === 'hero' ? 'active-link' : ''}
             style={useLinkSpring(activeSection === 'hero')}
           >
             Home
@@ -68,6 +68,7 @@ export default function Header() {
 
           <AnimatedLink 
             to="/about"
+            className={activeSection === 'about' ? 'active-link' : ''}
             style={useLinkSpring(activeSection === 'about')}
           >  
             About
@@ -75,6 +76,7 @@ export default function Header() {
 
           <AnimatedLink 
             to="/services"
+            className={activeSection === 'services' ? 'active-link' : ''}
             style={useLinkSpring(activeSection === 'services')}
           >
             Services
@@ -82,6 +84,7 @@ export default function Header() {
           
           <AnimatedLink 
             to="/whyus"
+            className={activeSection === 'whyus' ? 'active-link' : ''}
             style={useLinkSpring(activeSection === 'whyus')}
           >
             Why Us
@@ -89,6 +92,7 @@ export default function Header() {
           
           <AnimatedLink 
             to="/pricing"
+            className={activeSection === 'pricing' ? 'active-link' : ''}
             style={useLinkSpring(activeSection === 'pricing')}
           >
             Prices
@@ -96,6 +100,7 @@ export default function Header() {
           
           <AnimatedLink 
             to="/contact"
+            className={activeSection === 'contact' ? 'active-link' : ''}
             style={useLinkSpring(activeSection === 'contact')}
           >
             Contact
