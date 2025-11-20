@@ -57,42 +57,42 @@ export default function Header({ activeSection }) {
         <div className="nav-links">
           <AnimatedLink 
             to="/"
-            className={useLinkSpring(activeSection === 'hero')}
+            style={useLinkSpring(activeSection === 'hero')}
           >
             Home
           </AnimatedLink>
 
           <AnimatedLink 
             to="/about"
-            className={useLinkSpring(activeSection === 'about')}
+            style={useLinkSpring(activeSection === 'about')}
           >  
             About
           </AnimatedLink>
 
           <AnimatedLink 
             to="/services"
-            className={useLinkSpring(activeSection === 'services')}
+            style={useLinkSpring(activeSection === 'services')}
           >
             Services
           </AnimatedLink>
           
           <AnimatedLink 
             to="/whyus"
-            className={useLinkSpring(activeSection === 'whyus')}
+            style={useLinkSpring(activeSection === 'whyus')}
           >
             Why Us
           </AnimatedLink>
           
           <AnimatedLink 
             to="/pricing"
-            className={useLinkSpring(activeSection === 'pricing')}
+            style={useLinkSpring(activeSection === 'pricing')}
           >
             Prices
           </AnimatedLink>
           
           <AnimatedLink 
             to="/contact"
-            className={useLinkSpring(activeSection === 'contact')}
+            style={useLinkSpring(activeSection === 'contact')}
           >
             Contact
           </AnimatedLink>
