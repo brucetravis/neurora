@@ -6,6 +6,7 @@ import Services from './home-components/services/Services'
 import WhyUs from './home-components/whyus/WhyUs'
 import Pricing from './home-components/pricing/Pricing'
 import Contact from './home-components/contact/Contact'
+import Header from '../../components/header/Header'
 
 export default function Home() {
 
@@ -64,6 +65,7 @@ export default function Home() {
 
   return (
     <div>
+      <Header activeSection={activeSection} />
       <section ref={heroRef}><Hero /></section>
       <section ref={aboutRef}><About /></section>
       <section ref={servicesRef}><Services /></section>
