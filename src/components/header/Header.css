@@ -53,6 +53,7 @@
 .mobile-menu a.active {
   color: #c87cff;
   font-weight: 700; /* optional for emphasis */
+  text-shadow: 0 0 6px #c87cff, 0 0 12px #d5a0fa;
 }
 
 .nav-links a.active::after,
