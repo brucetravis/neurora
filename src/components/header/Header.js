@@ -5,7 +5,7 @@ import './Header.css'
 import { useSpring, animated } from '@react-spring/web';
 import { useTrail } from '@react-spring/web';
 
-export default function Header() {
+export default function Header({ activeSection }) {
 
   // import the useNavigate hook from the react router so that we can route to another page
   const navigation = useNavigate()
@@ -37,6 +37,17 @@ export default function Header() {
     config: { tension: 220, friction: 20 }
   })
 
+  // React spring for active nav links
+  function useLinkSpring(isActive) {
+    return useSpring({
+      color: isActive ? '#c87cff' : '#fff', // purple when active, white when not
+      textShadow: isActive ? '0 0 6px #c87cff, 0 0 12px #d5a0fa' : '0 0 0px #000', // glow when active
+      config: { tension: 200, friction: 20 } // smooth spring
+    })
+  }
+
+  const AnimatedLink = animated(Link)
+
   return (
     <header>
       <nav className="navbar">
@@ -44,12 +55,48 @@ export default function Header() {
           <Link to="/">Neurora</Link>
         </div>
         <div className="nav-links">
-          <Link to="/">Home</Link>
-          <Link to="/about">About</Link>
-          <Link to="/services">Services</Link>
-          <Link to="/whyus">Why Us</Link>
-          <Link to="/pricing">Prices</Link>
-          <Link to="/contact">Contact</Link>
+          <AnimatedLink 
+            to="/"
+            className={useLinkSpring(activeSection === 'hero')}
+          >
+            Home
+          </AnimatedLink>
+
+          <AnimatedLink 
+            to="/about"
+            className={useLinkSpring(activeSection === 'about')}
+          >  
+            About
+          </AnimatedLink>
+
+          <AnimatedLink 
+            to="/services"
+            className={useLinkSpring(activeSection === 'services')}
+          >
+            Services
+          </AnimatedLink>
+          
+          <AnimatedLink 
+            to="/whyus"
+            className={useLinkSpring(activeSection === 'whyus')}
+          >
+            Why Us
+          </AnimatedLink>
+          
+          <AnimatedLink 
+            to="/pricing"
+            className={useLinkSpring(activeSection === 'pricing')}
+          >
+            Prices
+          </AnimatedLink>
+          
+          <AnimatedLink 
+            to="/contact"
+            className={useLinkSpring(activeSection === 'contact')}
+          >
+            Contact
+          </AnimatedLink>
+        
         </div>
         
         <div 
@@ -63,11 +110,6 @@ export default function Header() {
           className="mobile-menu" 
           style={menuAnimation}
         >
-          {/* <Link to='/' onClick={() => setMenuOpen(false)}>Home</Link>
-          <Link to='/about' onClick={() => setMenuOpen(false)}>About</Link>
-          <Link to='/services' onClick={() => setMenuOpen(false)}>Services</Link>
-          <Link to='/contact' onClick={() => setMenuOpen(false)}>Contact</Link> */}
-
           <X 
             size={25} 
             stroke="#fff"
@@ -80,12 +122,12 @@ export default function Header() {
               key={menuItems[index].name}
               style={props}
             >
-              <Link
+              <AnimatedLink
                 to={menuItems[index].path}
                 onClick={() => setMenuOpen(false)}
               >
                 {menuItems[index].name}
-              </Link>
+              </AnimatedLink>
             </animated.div>
           ))}
 
@@ -100,16 +142,7 @@ export default function Header() {
               Get Started
             </button>
           </animated.div>
-
-          {/* <button 
-            className="btn-primary"
-            onClick={() => {
-              navigation('/contact')
-              setMenuOpen(false)
-            }}
-          >
-            Get Started
-          </button> */}
+          
         </animated.div>
 
         <button 
