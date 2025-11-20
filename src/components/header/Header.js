@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'; // use Link for routing
 import { Menu, X } from 'lucide-react'
 import './Header.css'
@@ -16,34 +16,6 @@ export default function Header() {
 
   // state to open and close the nav bar on a phone/small screen
   const [ menuOpen, setMenuOpen ] = useState(false) // initial state is false
-
-  // state to show the header on scroll
-  const [ showHeader, setShowHeader ] = useState(true)
-  const [ lastScrollY, setLastScrollY ] = useState(0)
-
-  // useEffect for side effects
-  useEffect(() => {
-    
-    function handleScroll() {
-      const currentY = window.scrollY
-
-      // hide the header when scrolling down
-      if (currentY > lastScrollY) {
-        setShowHeader(false)
-        
-        // show the header when scrolling up
-      } else {
-        setShowHeader(true)
-      }
-
-      setLastScrollY(currentY)
-    }
-    
-    window.addEventListener("scroll", handleScroll)
-
-    return () => window.removeEventListener("scroll", handleScroll)
-
-  }, [lastScrollY])
 
 
   // React spring animation function
@@ -82,16 +54,8 @@ export default function Header() {
 
   const AnimatedLink = animated(Link)
 
-  const headerSpring = useSpring({
-    transform: showHeader ? 'translateY(0%)' : 'translateY(-100%)',
-    config: { tension: 220, friction: 20}
-  })
-
   return (
-    <animated.header 
-      style={headerSpring}
-      className={ showHeader ? 'header-visible' : 'header-hidden'}
-    >
+    <header>
       <nav className="navbar">
         <div className="logo">
           <Link to="/">Neurora</Link>
@@ -195,7 +159,7 @@ export default function Header() {
         </button>
         
       </nav>
-    </animated.header>
+    </header>
   );
 }
 
