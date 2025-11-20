@@ -43,7 +43,7 @@ export default function Header() {
 
     return () => window.removeEventListener("scroll", handleScroll)
 
-  }, [])
+  }, [lastScrollY])
 
 
   // React spring animation function
