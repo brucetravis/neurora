@@ -4,8 +4,12 @@ import { Menu, X } from 'lucide-react'
 import './Header.css'
 import { useSpring, animated } from '@react-spring/web';
 import { useTrail } from '@react-spring/web';
+import { useActive } from '../../contexts/active/ActiveContext';
 
-export default function Header({ activeSection }) {
+export default function Header() {
+
+  // get the active section from the active context
+  const { activeSection } = useActive();
 
   // import the useNavigate hook from the react router so that we can route to another page
   const navigation = useNavigate()
