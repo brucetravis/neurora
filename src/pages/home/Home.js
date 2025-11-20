@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import './Home.css'
 import Hero from './home-components/hero/Hero'
 import About from './home-components/about/About'
@@ -6,12 +6,11 @@ import Services from './home-components/services/Services'
 import WhyUs from './home-components/whyus/WhyUs'
 import Pricing from './home-components/pricing/Pricing'
 import Contact from './home-components/contact/Contact'
-import Header from '../../components/header/Header'
+import { useActive } from '../../contexts/active/ActiveContext'
 
 export default function Home() {
 
-  // state to observe which section is active
-  const [ activeSection, setActiveSection ] = useState('hero')
+  const { setActiveSection } = useActive()
 
   const heroRef = useRef()
   const aboutRef = useRef()
@@ -65,7 +64,6 @@ export default function Home() {
 
   return (
     <div>
-      <Header activeSection={activeSection} />
       <section ref={heroRef}><Hero /></section>
       <section ref={aboutRef}><About /></section>
       <section ref={servicesRef}><Services /></section>
