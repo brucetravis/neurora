@@ -45,7 +45,9 @@ export default function Header() {
   function useLinkSpring(isActive) {
     return useSpring({
       color: isActive ? '#c87cff' : '#fff', // purple when active, white when not
-      textShadow: isActive ? '0 0 6px #c87cff, 0 0 12px #d5a0fa' : '0 0 0px #000', // glow when active
+      textShadow: isActive
+        ? '0 0 6px #c87cff, 0 0 12px #d5a0fa'
+        : '0 0 0px #000, 0 0 0px #000',
       config: { tension: 200, friction: 20 } // smooth spring
     })
   }
