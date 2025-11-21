@@ -88,15 +88,14 @@ export default function Header() {
 
   const AnimatedLink = animated(Link)
 
-  const headerSpring = useSpring({
-    transform: showHeader ? 'translateY(0%)' : 'translateY(-100%)',
-    config: { tension: 220, friction: 20}
-  })
-  
+  // const headerSpring = useSpring({
+  //   transform: showHeader ? 'translateY(0%)' : 'translateY(-100%)',
+  //   config: { tension: 220, friction: 20}
+  // })
 
   return (
-    <animated.header 
-      style={headerSpring}
+    <header 
+      // style={headerSpring}
       className={ showHeader ? 'header-visible' : 'header-hidden'}
     >
       <nav className="navbar">
@@ -202,7 +201,7 @@ export default function Header() {
         </button>
         
       </nav>
-    </animated.header>
+    </header>
   );
 }
 
