@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'; // use Link for routing
 import { Menu, X } from 'lucide-react'
 import './Header.css'
@@ -19,7 +19,9 @@ export default function Header() {
 
   // state to show the header on scroll
   const [ showHeader, setShowHeader ] = useState(true)
-  const [ lastScrollY, setLastScrollY ] = useState(0)
+  // const [ lastScrollY, setLastScrollY ] = useState(0)
+
+  const lastScrollY = useRef(0)
 
   // useEffect for side effects
   useEffect(() => {
@@ -27,11 +29,11 @@ export default function Header() {
     function handleScroll() {
       const currentY = window.scrollY
 
-      if (currentY <= 0) {
-        setShowHeader(true)
-        setLastScrollY(currentY)
-        return
-      }
+      // if (currentY <= 0) {
+      //   setShowHeader(true)
+      //   setLastScrollY(currentY)
+      //   return
+      // }
 
       // hide the header when scrolling down
       if (currentY > lastScrollY) {
@@ -42,7 +44,8 @@ export default function Header() {
         setShowHeader(true)
       }
 
-      setLastScrollY(currentY)
+      // setLastScrollY(currentY)
+      lastScrollY.current = currentY
     }
     
     window.addEventListener("scroll", handleScroll)

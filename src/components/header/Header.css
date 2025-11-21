@@ -1,11 +1,22 @@
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transition: transform 0.3s ease, background 0.3s ease; /* smooth hide/show */
+}
+
 .header-visible {
-  background: linear-gradient(180deg, #07030a 0%, #0f0420 45%, #13061a 100%);
-  transition: background 0.3s ease;
+    transform: translateY(0);
+    background: linear-gradient(180deg, #07030a 0%, #0f0420 45%, #13061a 100%);
+    transition: background 0.3s ease;
 }
 
 .header-hidden {
-  background: transparent;
-  transition: background 0.3s ease;
+    transform: translateY(-100%);
+    background: transparent;
+    transition: background 0.3s ease;
 }
 
 .navbar {
