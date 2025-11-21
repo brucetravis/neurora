@@ -27,12 +27,6 @@ export default function Header() {
     function handleScroll() {
       const currentY = window.scrollY
 
-      if (currentY <= 0) {
-        setShowHeader(true)
-        setLastScrollY(currentY)
-        return
-      }
-
       // hide the header when scrolling down
       if (currentY > lastScrollY) {
         setShowHeader(false)
@@ -49,7 +43,7 @@ export default function Header() {
 
     return () => window.removeEventListener("scroll", handleScroll)
 
-  }, [])
+  }, [lastScrollY])
 
 
   // React spring animation function
