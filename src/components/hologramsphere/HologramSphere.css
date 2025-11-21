@@ -1,0 +1,9 @@
+.robot3d-wrap {
+  width: 100%;
+  max-width: 440px;       /* width on large screens */
+  height: 400px;          /* matches canvas height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
