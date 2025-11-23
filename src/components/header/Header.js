@@ -106,35 +106,30 @@ export default function Header() {
           </AnimatedLink>
 
           <AnimatedLink 
-            to="/about"
             style={useLinkSpring(activeSection === 'about')}
           >  
             About
           </AnimatedLink>
 
           <AnimatedLink 
-            to="/services"
             style={useLinkSpring(activeSection === 'services')}
           >
             Services
           </AnimatedLink>
           
           <AnimatedLink 
-            to="/whyus"
             style={useLinkSpring(activeSection === 'whyus')}
           >
             Why Us
           </AnimatedLink>
           
           <AnimatedLink 
-            to="/pricing"
             style={useLinkSpring(activeSection === 'pricing')}
           >
             Prices
           </AnimatedLink>
           
           <AnimatedLink 
-            to="/contact"
             style={useLinkSpring(activeSection === 'contact')}
           >
             Contact
