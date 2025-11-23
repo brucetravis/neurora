@@ -29,12 +29,6 @@ export default function Header() {
     function handleScroll() {
       const currentY = window.scrollY
 
-      // if (currentY <= 0) {
-      //   setShowHeader(true)
-      //   setLastScrollY(currentY)
-      //   return
-      // }
-
       // hide the header when scrolling down
       if (currentY > lastScrollY.current) {
         setShowHeader(false)
@@ -49,9 +43,7 @@ export default function Header() {
     }
     
     window.addEventListener("scroll", handleScroll)
-
     return () => window.removeEventListener("scroll", handleScroll)
-
   }, [])
 
 
@@ -99,7 +91,7 @@ export default function Header() {
   return (
     <header 
       // style={headerSpring}
-      className={ showHeader ? 'header-visible' : 'header-hidden'}
+      className={ showHeader ? 'header-expanded' : 'header-shrink'}
     >
       <nav className="navbar">
         <div className="logo">
