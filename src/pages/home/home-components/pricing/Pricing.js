@@ -7,7 +7,7 @@ import { useSpring, useSprings, animated } from '@react-spring/web';
 //  PRICING COMPONENT
 // -----------------------------
 export default function Pricing() {
-    const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.2 });
+    const [ref, inView] = useInView({ threshold: 0.2 });
     const [currency, setCurrency] = useState('USD');
 
     const EUR_RATE = 0.92;
@@ -149,17 +149,17 @@ export default function Pricing() {
         config: { mass: 1, tension: 200, friction: 24 },
     }));
 
-    // // trigger animation when inView becomes true
-    // useEffect(() => {
-    // if (inView) {
-    //     api.start((i) => ({
-    //     opacity: 1,
-    //     x: 0,
-    //     y: 0,
-    //     delay: i * 100 + extraDelay
-    //     }));
-    // }
-    // }, [inView, api]);
+    // trigger animation when inView becomes true
+    useEffect(() => {
+    if (inView) {
+        api.start((i) => ({
+        opacity: 1,
+        x: 0,
+        y: 0,
+        delay: i * 100 + extraDelay
+        }));
+    }
+    }, [inView, api]);
 
     const [swCardSprings, swApi] = useSprings(swPlans.length, (i) => ({
         opacity: 0,
@@ -168,38 +168,16 @@ export default function Pricing() {
         config: { mass: 1, tension: 200, friction: 24 },
     }));
 
-    // useEffect(() => {
-    //     if (inView) {
-    //         swApi.start((i) => ({
-    //         opacity: 1,
-    //         x: 0,
-    //         y: 0,
-    //         delay: i * 100 + 200, // offset slightly after AI cards
-    //         }));
-    //     }
-    // }, [inView, api, swApi]);
-
     useEffect(() => {
         if (inView) {
-            api.start((i) => ({
-            opacity: 1,
-            x: 0,
-            y: 0,
-            delay: i * 100 + extraDelay,
-            }));
-
             swApi.start((i) => ({
             opacity: 1,
             x: 0,
             y: 0,
-            delay: i * 100 + 200,
+            delay: i * 100 + 200, // offset slightly after AI cards
             }));
-        } else {
-            // reset if needed
-            api.set({ opacity: 0, x: -30, y: 50 });
-            swApi.set({ opacity: 0, x: -50, y: 50 });
         }
-    }, [inView, currency, api, swApi]);
+    }, [inView, swApi]);
 
     return (
         <section className="pricing-section" ref={ref}>
