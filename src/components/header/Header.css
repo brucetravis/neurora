@@ -4,22 +4,24 @@ header {
   left: 0;
   right: 0;
   z-index: 1000;
-  transition: transform 0.3s ease, background 0.3s ease; /* smooth hide/show */
+   background: rgba(7, 3, 10, 0.7);
+   backdrop-filter: blur(12px);
+  transition: all 0.25s ease;
 }
 
-.header-visible {
-    transform: translateY(0);
-    background: linear-gradient(180deg, #07030a 0%, #0f0420 45%, #13061a 100%);
-    transition: background 0.3s ease;
+/* full height on scroll UP */
+.header-expanded .navbar {
+    padding: 1.4rem 2rem;
 }
 
-.header-hidden {
-    transform: translateY(-100%);
-    background: transparent;
-    transition: background 0.3s ease;
+/* smaller height on scroll DOWN */
+.header-shrink .navbar {
+    padding: 0.6rem 2rem;
+    background: rgba(7, 3, 10, 0.9);
 }
 
 .navbar {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
