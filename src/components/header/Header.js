@@ -36,7 +36,7 @@ export default function Header() {
       // }
 
       // hide the header when scrolling down
-      if (currentY > lastScrollY) {
+      if (currentY > lastScrollY.current) {
         setShowHeader(false)
         
         // show the header when scrolling up
