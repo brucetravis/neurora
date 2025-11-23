@@ -39,9 +39,18 @@ export default function Footer() {
             </div>
 
             <div className="footer-social">
-                <FaInstagram />
-                <FaLinkedin />
-                <FaXTwitter />
+                <FaInstagram 
+                    onClick={() => window.open('https://www.instagram.com/')}
+                />
+
+                <FaLinkedin 
+                    onClick={() => window.open('https://www.linkedin.com/feed/')}
+                />
+
+                <FaXTwitter 
+                    onClick={() => window.open('https://x.com/')}
+                />
+
                 <FaFacebookF />
             </div>
         </div>
