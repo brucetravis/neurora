@@ -7,7 +7,7 @@ import { useSpring, useSprings, animated } from '@react-spring/web';
 //  PRICING COMPONENT
 // -----------------------------
 export default function Pricing() {
-    const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.2 });
+    const [ref, inView] = useInView({ threshold: 0.2 });
     const [currency, setCurrency] = useState('USD');
 
     const EUR_RATE = 0.92;
