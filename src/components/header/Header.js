@@ -185,7 +185,7 @@ export default function Header() {
 
         <button 
           className="btn-primary"
-          onClick={() => navigation('/contact')}
+          onClick={() => window.open('https://calendly.com/neurora4/30min', '_blank')}
         >
           Get Started
         </button>
