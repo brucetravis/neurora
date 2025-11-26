@@ -173,7 +173,7 @@ export default function Header() {
             <button 
               className="btn-primary"
               onClick={() => {
-                navigation('/contact');
+                window.open('https://calendly.com/neurora4/30min', '_blank')
                 setMenuOpen(false);
               }}
             >
