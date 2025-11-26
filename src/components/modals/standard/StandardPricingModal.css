@@ -1,0 +1,68 @@
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* behind the modal */
+}
+
+
+.standard-modal {
+    position: fixed; /* stays in place while scrolling */
+    top: 50%; /* move to vertical center */
+    left: 50%; /* move to horizontal center */
+    transform: translate(-50%, -50%); /* Perfect centering */
+    z-index: 999; /* above other content */
+    background: linear-gradient(180deg, #3b1a53 0%, #1f0742 45%, #13061a 100%);
+    max-width: 600px;
+    width: 90%; /* responsive on small screens */
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    border-radius: 12px;
+    padding: 30px;
+}
+
+
+.standard-modal h2 {
+    color: rgba(200,124,255,0.92);
+    font-weight: 700;
+    font-size: 2rem;
+    text-transform: uppercase;
+}
+
+.payment-buttons {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.payment-buttons .purchase-button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.payment-buttons .cancel-button {
+    background-color: #f44336; /* Red */
+    border: none;
+    color: white;
+    padding: 10px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
