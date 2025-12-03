@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import './Pricing.css';
 import { useInView } from 'react-intersection-observer';
 import { useSpring, useSprings, animated } from '@react-spring/web';
+import { usePricing } from '../../../../contexts/PricingProvider';
 
 // -----------------------------
 //  PRICING COMPONENT
@@ -9,6 +10,9 @@ import { useSpring, useSprings, animated } from '@react-spring/web';
 export default function Pricing() {
     const [ref, inView] = useInView({ threshold: 0.2 });
     const [currency, setCurrency] = useState('USD');
+
+    // get the necessary functions from the pricing provider
+    const { setSelectedPlan, setOpenStandardModal, setOpenQuotationModal } = usePricing();
 
     const EUR_RATE = 0.92;
     const KES_RATE = 130;
@@ -149,17 +153,17 @@ export default function Pricing() {
         config: { mass: 1, tension: 200, friction: 24 },
     }));
 
-    // trigger animation when inView becomes true
-    useEffect(() => {
-    if (inView) {
-        api.start((i) => ({
-        opacity: 1,
-        x: 0,
-        y: 0,
-        delay: i * 100 + extraDelay
-        }));
-    }
-    }, [inView, api]);
+    // // trigger animation when inView becomes true
+    // useEffect(() => {
+    // if (inView) {
+    //     api.start((i) => ({
+    //     opacity: 1,
+    //     x: 0,
+    //     y: 0,
+    //     delay: i * 100 + extraDelay
+    //     }));
+    // }
+    // }, [inView, api]);
 
     const [swCardSprings, swApi] = useSprings(swPlans.length, (i) => ({
         opacity: 0,
@@ -168,16 +172,51 @@ export default function Pricing() {
         config: { mass: 1, tension: 200, friction: 24 },
     }));
 
+    // useEffect(() => {
+    //     if (inView) {
+    //         swApi.start((i) => ({
+    //         opacity: 1,
+    //         x: 0,
+    //         y: 0,
+    //         delay: i * 100 + 200, // offset slightly after AI cards
+    //         }));
+    //     }
+    // }, [inView, api, swApi]);
+
     useEffect(() => {
         if (inView) {
-            swApi.start((i) => ({
-            opacity: 1,
-            x: 0,
-            y: 0,
-            delay: i * 100 + 200, // offset slightly after AI cards
+            api.start((i) => ({
+                opacity: 1,
+                x: 0,
+                y: 0,
+                delay: i * 100 + extraDelay,
             }));
+
+            swApi.start((i) => ({
+                opacity: 1,
+                x: 0,
+                y: 0,
+                delay: i * 100 + 200,
+            }));
+        } else {
+            // reset if needed
+            api.set({ opacity: 0, x: -30, y: 50 });
+            swApi.set({ opacity: 0, x: -50, y: 50 });
         }
-    }, [inView, swApi]);
+    }, [inView, currency, api, swApi]);
+
+
+    // function to handle the plans
+    const handleStandardPlans = (plan) => {
+        setSelectedPlan(plan);
+        setOpenStandardModal(true);
+    }
+
+    // function to handle the plans
+    const handleQuotationPlans = (plan) => {
+        setSelectedPlan(plan);
+        setOpenQuotationModal(true)
+    }
 
     return (
         <section className="pricing-section" ref={ref}>
@@ -233,8 +272,8 @@ export default function Pricing() {
                                 <div className="card-body">
                                     <h4 className="card-title">{plan.name}</h4>
                                     <div className="price">
-                                    <span className="price-amount">{format(plan.usd)}</span>
-                                    <span className="price-note">Starting from</span>
+                                        <span className="price-amount">{format(plan.usd)}</span>
+                                        <span className="price-note">Starting from</span>
                                     </div>
                                     <ul className="features">
                                         {plan.features.map((feature, idx) => (
@@ -242,8 +281,19 @@ export default function Pricing() {
                                         ))}
                                     </ul>
                                     <div className="card-cta">
-                                        <button className={`btn primary ${i === 1 ? 'btn-ghost' : ''}`}>Get started</button>
-                                        <button className="btn subtle">Contact sales</button>
+                                        <button 
+                                            className={`btn primary ${i === 1 ? 'btn-ghost' : ''}`}
+                                            onClick={() => handleStandardPlans(plan)}
+                                        >
+                                            Get started
+                                        </button>
+                                        
+                                        <button 
+                                            className="btn subtle"
+                                            onClick={() => handleQuotationPlans(plan)}
+                                        >
+                                            Request Quote
+                                        </button>
                                     </div>
                                 </div>
                             </animated.article>
@@ -288,8 +338,18 @@ export default function Pricing() {
                                 ))}
                             </ul>
                             <div className="card-cta">
-                                <button className="btn primary">Get started</button>
-                                <button className="btn subtle">Request quote</button>
+                                <button 
+                                    className="btn primary"
+                                    onClick={() => handleStandardPlans(plan) }
+                                >
+                                    Get started
+                                </button>
+                                <button 
+                                    className="btn subtle"
+                                    onClick={() => handleQuotationPlans(plan) }
+                                >
+                                    Request quote
+                                </button>
                             </div>
                         </div>
                         </animated.article>
