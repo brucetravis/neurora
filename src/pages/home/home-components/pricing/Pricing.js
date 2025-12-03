@@ -206,7 +206,6 @@ export default function Pricing() {
     }, [inView, currency, api, swApi]);
 
 
-
     // function to handle the plans
     const handleStandardPlans = (plan) => {
         setSelectedPlan(plan);

@@ -1,17 +1,50 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'; // use Link for routing
 import { Menu, X } from 'lucide-react'
 import './Header.css'
 import { useSpring, animated } from '@react-spring/web';
 import { useTrail } from '@react-spring/web';
+import { useActive } from '../../contexts/active/ActiveContext';
 
 export default function Header() {
+
+  // get the active section from the active context
+  const { activeSection } = useActive();
 
   // import the useNavigate hook from the react router so that we can route to another page
   const navigation = useNavigate()
 
   // state to open and close the nav bar on a phone/small screen
   const [ menuOpen, setMenuOpen ] = useState(false) // initial state is false
+
+  // state to show the header on scroll
+  const [ showHeader, setShowHeader ] = useState(true)
+  // const [ lastScrollY, setLastScrollY ] = useState(0)
+
+  const lastScrollY = useRef(0)
+
+  // useEffect for side effects
+  useEffect(() => {
+    
+    function handleScroll() {
+      const currentY = window.scrollY
+
+      // hide the header when scrolling down
+      if (currentY > lastScrollY.current) {
+        setShowHeader(false)
+        
+        // show the header when scrolling up
+      } else {
+        setShowHeader(true)
+      }
+
+      // setLastScrollY(currentY)
+      lastScrollY.current = currentY
+    }
+    
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
 
   // React spring animation function
@@ -25,6 +58,8 @@ export default function Header() {
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
     { name: 'Services', path: '/services' },
+    { name: 'Why Us', path: '/whyus' },
+    { name: 'Prices', path: '/pricing' },
     { name: 'Contact', path: '/contact' }
   ]
 
@@ -35,38 +70,87 @@ export default function Header() {
     config: { tension: 220, friction: 20 }
   })
 
+  // React spring for active nav links
+  function useLinkSpring(isActive) {
+    return useSpring({
+      color: isActive ? '#c87cff' : '#fff', // purple when active, white when not
+      textShadow: isActive
+        ? '0 0 6px #c87cff, 0 0 12px #d5a0fa'
+        : '0 0 0px #000, 0 0 0px #000',
+      config: { tension: 200, friction: 20 } // smooth spring
+    })
+  }
+
+  const AnimatedLink = animated(Link)
+
+  // const headerSpring = useSpring({
+  //   transform: showHeader ? 'translateY(0%)' : 'translateY(-100%)',
+  //   config: { tension: 220, friction: 20}
+  // })
+
   return (
-    <header>
+    <header 
+      // style={headerSpring}
+      className={ showHeader ? 'header-expanded' : 'header-shrink'}
+    >
       <nav className="navbar">
         <div className="logo">
           <Link to="/">Neurora</Link>
         </div>
         <div className="nav-links">
-          <Link to="/">Home</Link>
-          <Link to="/about">About</Link>
-          <Link to="/services">Services</Link>
-          <Link to="/contact">Contact</Link>
+          <AnimatedLink 
+            to="/"
+            style={useLinkSpring(activeSection === 'hero')}
+          >
+            Home
+          </AnimatedLink>
+
+          <AnimatedLink 
+            style={useLinkSpring(activeSection === 'about')}
+          >  
+            About
+          </AnimatedLink>
+
+          <AnimatedLink 
+            style={useLinkSpring(activeSection === 'services')}
+          >
+            Services
+          </AnimatedLink>
+          
+          <AnimatedLink 
+            style={useLinkSpring(activeSection === 'whyus')}
+          >
+            Why Us
+          </AnimatedLink>
+          
+          <AnimatedLink 
+            style={useLinkSpring(activeSection === 'pricing')}
+          >
+            Prices
+          </AnimatedLink>
+          
+          <AnimatedLink 
+            style={useLinkSpring(activeSection === 'contact')}
+          >
+            Contact
+          </AnimatedLink>
+        
         </div>
         
         <div 
           className='hamburger-icon'
           onClick={() => setMenuOpen(!menuOpen)}
         >
-          {menuOpen ? <X size={25} stroke="#222222" /> : <Menu size={25} stroke="#222" />}
+          {menuOpen ? <X size={25} stroke="#fff" /> : <Menu size={25} stroke="#fff" />}
         </div>
         
         <animated.div 
           className="mobile-menu" 
           style={menuAnimation}
         >
-          {/* <Link to='/' onClick={() => setMenuOpen(false)}>Home</Link>
-          <Link to='/about' onClick={() => setMenuOpen(false)}>About</Link>
-          <Link to='/services' onClick={() => setMenuOpen(false)}>Services</Link>
-          <Link to='/contact' onClick={() => setMenuOpen(false)}>Contact</Link> */}
-
           <X 
             size={25} 
-            stroke="#222222"
+            stroke="#fff"
             onClick={() => setMenuOpen(!menuOpen)}
             className='close-nav' 
           />
@@ -76,12 +160,12 @@ export default function Header() {
               key={menuItems[index].name}
               style={props}
             >
-              <Link
+              <AnimatedLink
                 to={menuItems[index].path}
                 onClick={() => setMenuOpen(false)}
               >
                 {menuItems[index].name}
-              </Link>
+              </AnimatedLink>
             </animated.div>
           ))}
 
@@ -89,28 +173,19 @@ export default function Header() {
             <button 
               className="btn-primary"
               onClick={() => {
-                navigation('/contact');
+                window.open('https://calendly.com/neurora4/30min', '_blank')
                 setMenuOpen(false);
               }}
             >
               Get Started
             </button>
           </animated.div>
-
-          {/* <button 
-            className="btn-primary"
-            onClick={() => {
-              navigation('/contact')
-              setMenuOpen(false)
-            }}
-          >
-            Get Started
-          </button> */}
+          
         </animated.div>
 
         <button 
           className="btn-primary"
-          onClick={() => navigation('/contact')}
+          onClick={() => window.open('https://calendly.com/neurora4/30min', '_blank')}
         >
           Get Started
         </button>
@@ -119,3 +194,4 @@ export default function Header() {
     </header>
   );
 }
+

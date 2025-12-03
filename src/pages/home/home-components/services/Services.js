@@ -40,7 +40,7 @@ export default function Services() {
       </animated.h4>
       
       <div
-        className="section-inner container"
+        className="section-inner"
       >
         <animated.h2 style={textSpring} className='services-heading' id="services-title">
           Intelligent Solutions for Your Business
