@@ -125,3 +125,10 @@
     }
 }
 
+
+@media (max-width: 992px) {
+    .neurora-text {
+        font-size: 3rem;
+    }
+}
+
