@@ -55,12 +55,12 @@ export default function Header() {
   })
 
   const menuItems = [
-    { name: 'Home', path: '/' },
-    { name: 'About', path: '/about' },
-    { name: 'Services', path: '/services' },
-    { name: 'Why Us', path: '/whyus' },
-    { name: 'Prices', path: '/pricing' },
-    { name: 'Contact', path: '/contact' }
+    { name: 'Home', path: '/', id: 'hero' },
+    { name: 'About', path: '/about', id: 'about' },
+    { name: 'Services', path: '/services', id: 'services' },
+    { name: 'Why Us', path: '/whyus', id: 'whyus' },
+    { name: 'Prices', path: '/pricing', id: 'pricing' },
+    { name: 'Contact', path: '/contact', id: 'contact' }
   ]
 
   const trail = useTrail(menuItems.length, {
@@ -162,7 +162,7 @@ export default function Header() {
             >
               <AnimatedLink
                 style={getLinkSpring(
-                  activeSection === menuItems[index].name.toLowerCase()
+                  activeSection === menuItems[index].id
                 )}
 
                 onClick={() => setMenuOpen(false)}
