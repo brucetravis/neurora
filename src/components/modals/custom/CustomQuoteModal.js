@@ -135,7 +135,7 @@ export default function CustomQuoteModal() {
                         <div className='owner_type'>
                             <h3>Type of entity?</h3>
 
-                            <div className='d-flex align-items-center gap-5'>
+                            <div className='entity-section'>
                                 <label>
                                     <input 
                                         type='radio'
@@ -250,7 +250,7 @@ export default function CustomQuoteModal() {
                         <div className='software_type'>
                             <h3>Type of Software to purchase?</h3>
 
-                            <div className='d-flex align-items-center gap-5'>
+                            <div className='software-section'>
                                 <label>
                                     <input 
                                         type='radio'

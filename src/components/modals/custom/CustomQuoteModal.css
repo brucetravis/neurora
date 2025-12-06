@@ -2,7 +2,7 @@
     position: fixed;
     inset: 0;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1;
+    z-index: 1000;
 }
 
 .custom-modal {
@@ -31,6 +31,13 @@
     color: white;
     font-size: 20px;
     font-weight: 800;
+}
+
+.custom-modal .entity-section,
+.custom-modal .software-section {
+    display: flex;
+    align-items: center;
+    gap: 50px;
 }
 
 
@@ -101,5 +108,79 @@
 
 .quotation-buttons .cancel-quotation:hover {
     background-color: #b4362d;
+}
+
+
+@media (max-width: 992px) {
+    
+    .quotation-modal-overlay {
+        overflow-y: scroll;
+    }
+
+    .custom-modal h2 {
+        margin-top: 5vh;
+        line-height: 1;
+        font-size: 1.5rem;
+    }
+
+    /* Stack the radios properly */
+    .custom-modal .entity-section,
+    .custom-modal .software-section {
+        flex-direction: column;
+        gap: 3px;
+        align-items: flex-start;
+    }
+
+    /* Budget section should not shift right on mobile */
+    .budget-div {
+        margin-left: 0;
+        width: 100%
+    }
+
+    .custom-modal h3 {
+        font-size: 16px;
+    }
+
+     /* Make select + input full width, stacked */
+    .custom-modal .prices {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .custom-modal .prices select,
+    .custom-modal .prices input,
+    .name_of_entity,
+    .budget-div {
+        width: 100%;
+    }
+
+    /* Ensure name_of_entity expands correctly */
+    .name_of_entity {
+        width: 100%;
+    }
+
+    .custom-modal .name_of_entity input {
+        display: block;
+        width: 100%;
+        padding: 9px 18px;
+        box-sizing: border-box; /* ensures padding doesn't break width */
+    }
+
+    .name_of_entity label {
+        display: block;
+        margin-bottom: 5px; /* optional spacing */
+    }
+
+    .custom-modal .maintenance {
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .quotation-buttons {
+        display: flex;
+        flex-direction: column;
+        margin: 20px 0;
+    }
 }
 

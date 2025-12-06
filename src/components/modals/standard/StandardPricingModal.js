@@ -144,7 +144,7 @@ export default function StandardPricingModal({ aiPlans, swPlans }) {
               <h3>Type of entity?</h3>
 
               <div
-                className='d-flex align-items-center gap-5'
+                className='entity-section'
               >
                 <label>
                   <input 
@@ -273,7 +273,7 @@ export default function StandardPricingModal({ aiPlans, swPlans }) {
               <h3>Type of Software to purchase?</h3>
 
               <div
-                className='d-flex align-items-center gap-5'
+                className='software-section'
               >
                 <label>
                   <input 
