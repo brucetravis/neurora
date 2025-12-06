@@ -8,7 +8,7 @@ import { usePricing } from '../../../../contexts/PricingProvider';
 //  PRICING COMPONENT
 // -----------------------------
 export default function Pricing() {
-    const [ref, inView] = useInView({ threshold: 0.2 });
+    const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: true });
     const [currency, setCurrency] = useState('USD');
 
     // get the necessary functions from the pricing provider

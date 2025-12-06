@@ -5,12 +5,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow-y: scroll;
     z-index: 1000; /* behind the modal */
 }
 
 
 .standard-modal {
-    position: fixed; /* stays in place while scrolling */
+    position: absolute;
     top: 50%; /* move to vertical center */
     left: 50%; /* move to horizontal center */
     transform: translate(-50%, -50%); /* Perfect centering */
@@ -55,6 +56,16 @@
     display: flex;
     justify-content: space-evenly;
 }
+
+
+
+.standard-modal .entity-section,
+.standard-modal .software-section {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
 
 .payment-buttons .purchase-button {
     background-color: #4CAF50; /* Green */
@@ -178,5 +189,79 @@
     color: white;
     display: flex;
     gap: 10px
+}
+
+
+@media (max-width: 992px) {
+    
+    .modal-overlay {
+        overflow-y: scroll;
+    }
+
+    .standard-modal h2 {
+        margin-top: 8vh;
+        line-height: 1;
+        font-size: 1.5rem;
+    }
+
+    /* Stack the radios properly */
+    .client-questionnaire .entity-section,
+    .client-questionnaire .software-section {
+        flex-direction: column;
+        gap: 3px;
+        align-items: flex-start;
+    }
+
+    /* Budget section should not shift right on mobile */
+    .budget-div {
+        margin-left: 0;
+        width: 100%
+    }
+
+    .standard-modal h3 {
+        font-size: 16px;
+    }
+
+     /* Make select + input full width, stacked */
+    .standard-modal .prices {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .standard-modal .prices select,
+    .standard-modal .prices input,
+    .name_of_entity,
+    .budget-div {
+        width: 100%;
+    }
+
+    /* Ensure name_of_entity expands correctly */
+    .name_of_entity {
+        width: 100%;
+    }
+
+    .standard-modal .name_of_entity input {
+        display: block;
+        width: 100%;
+        padding: 9px 18px;
+        box-sizing: border-box; /* ensures padding doesn't break width */
+    }
+
+    .name_of_entity label {
+        display: block;
+        margin-bottom: 5px; /* optional spacing */
+    }
+
+    .standard-modal .maintenance {
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .payment-buttons {
+        display: flex;
+        flex-direction: column;
+        margin: 20px 0;
+    }
 }
 
