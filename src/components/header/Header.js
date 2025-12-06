@@ -55,12 +55,12 @@ export default function Header() {
   })
 
   const menuItems = [
-    { name: 'Home', path: '/' },
-    { name: 'About', path: '/about' },
-    { name: 'Services', path: '/services' },
-    { name: 'Why Us', path: '/whyus' },
-    { name: 'Prices', path: '/pricing' },
-    { name: 'Contact', path: '/contact' }
+    { name: 'Home', path: '/', id: 'hero' },
+    { name: 'About', path: '/about', id: 'about' },
+    { name: 'Services', path: '/services', id: 'services' },
+    { name: 'Why Us', path: '/whyus', id: 'whyus' },
+    { name: 'Prices', path: '/pricing', id: 'pricing' },
+    { name: 'Contact', path: '/contact', id: 'contact' }
   ]
 
   const trail = useTrail(menuItems.length, {
@@ -71,14 +71,14 @@ export default function Header() {
   })
 
   // React spring for active nav links
-  function useLinkSpring(isActive) {
-    return useSpring({
+  function getLinkSpring(isActive) {
+    return {
       color: isActive ? '#c87cff' : '#fff', // purple when active, white when not
       textShadow: isActive
         ? '0 0 6px #c87cff, 0 0 12px #d5a0fa'
         : '0 0 0px #000, 0 0 0px #000',
       config: { tension: 200, friction: 20 } // smooth spring
-    })
+    }
   }
 
   const AnimatedLink = animated(Link)
@@ -100,37 +100,37 @@ export default function Header() {
         <div className="nav-links">
           <AnimatedLink 
             to="/"
-            style={useLinkSpring(activeSection === 'hero')}
+            style={getLinkSpring(activeSection === 'hero')}
           >
             Home
           </AnimatedLink>
 
           <AnimatedLink 
-            style={useLinkSpring(activeSection === 'about')}
+            style={getLinkSpring(activeSection === 'about')}
           >  
             About
           </AnimatedLink>
 
           <AnimatedLink 
-            style={useLinkSpring(activeSection === 'services')}
+            style={getLinkSpring(activeSection === 'services')}
           >
             Services
           </AnimatedLink>
           
           <AnimatedLink 
-            style={useLinkSpring(activeSection === 'whyus')}
+            style={getLinkSpring(activeSection === 'whyus')}
           >
             Why Us
           </AnimatedLink>
           
           <AnimatedLink 
-            style={useLinkSpring(activeSection === 'pricing')}
+            style={getLinkSpring(activeSection === 'pricing')}
           >
             Prices
           </AnimatedLink>
           
           <AnimatedLink 
-            style={useLinkSpring(activeSection === 'contact')}
+            style={getLinkSpring(activeSection === 'contact')}
           >
             Contact
           </AnimatedLink>
@@ -161,7 +161,10 @@ export default function Header() {
               style={props}
             >
               <AnimatedLink
-                to={menuItems[index].path}
+                style={getLinkSpring(
+                  activeSection === menuItems[index].id
+                )}
+
                 onClick={() => setMenuOpen(false)}
               >
                 {menuItems[index].name}

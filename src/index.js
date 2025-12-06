@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom'
 import Header from './components/header/Header';
+import Footer from './components/footer/Footer'
 import PricingProvider from './contexts/PricingProvider';
 import ActiveProvider from './contexts/active/ActiveContext';
 
@@ -15,6 +16,7 @@ root.render(
         <BrowserRouter>
           <Header />
           <App />
+          <Footer />
         </BrowserRouter>
       </PricingProvider>
     </ActiveProvider>
