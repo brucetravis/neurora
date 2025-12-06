@@ -14,7 +14,8 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  /* background-attachment: fixed; */
+  background-attachment: scroll;
   backdrop-filter: blur(50px);
 }
 
@@ -312,10 +313,18 @@
 }
 
 /* responsiveness tweaks */
-@media (max-width: 980px) {
+@media (max-width: 992px) {
   .pricing-heading { font-size: 2rem; }
   .cards-grid { gap: 1rem; }
   .card-3d { height: 180px; }
+  .pricing-section {
+    background-attachment: scroll !important;
+  }
+
+  .cards-grid .card {
+    opacity: 1 !important;
+    transform: translateX(0) translateY(0) !important;
+  }
 }
 
 @media (max-width: 640px) {
