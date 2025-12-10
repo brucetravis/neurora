@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useMemo, useEffect } from 'react';
 import './Pricing.css';
 import { useInView } from 'react-intersection-observer';
 import { useSpring, useSprings, animated } from '@react-spring/web';
@@ -9,19 +9,12 @@ import { usePricing } from '../../../../contexts/PricingProvider';
 // -----------------------------
 export default function Pricing() {
     const [ref, inView] = useInView({ threshold: 0.2 });
-    const [currency, setCurrency] = useState('USD');
 
     // get the necessary functions from the pricing provider
-    const { setSelectedPlan, setOpenStandardModal, setOpenQuotationModal } = usePricing();
+    const { setSelectedPlan, setOpenStandardModal, setOpenQuotationModal, 
+            currency, setCurrency, format
+        } = usePricing();
 
-    const EUR_RATE = 0.92;
-    const KES_RATE = 130;
-
-    const format = (usd) => {
-        if (currency === 'USD') return `$${usd.toLocaleString()}`;
-        if (currency === 'EUR') return `€${Math.round(usd * EUR_RATE).toLocaleString()}`;
-        return `KSh ${Math.round(usd * KES_RATE).toLocaleString()}`;
-    };
 
     // -----------------------------
     //  MEMOIZED PLANS

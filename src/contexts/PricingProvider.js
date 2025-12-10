@@ -14,13 +14,25 @@ export default function PricingProvider({ children }) {
     const [ openStandardModal, setOpenStandardModal ] = useState(false)
     const [ openQuotationModal, setOpenQuotationModal ] = useState(false)
     const [ selectedPlan, setSelectedPlan ] = useState(null)
+    const [currency, setCurrency] = useState('USD');
+
+    const EUR_RATE = 0.92;
+    const KES_RATE = 130;
+
+    const format = (usd) => {
+    if (currency === 'USD') return `$${usd.toLocaleString()}`;
+    if (currency === 'EUR') return `€${Math.round(usd * EUR_RATE).toLocaleString()}`;
+    return `KSh ${Math.round(usd * KES_RATE).toLocaleString()}`;
+    };
+
 
     return (
         <PricingContext.Provider
             value={{
                 openStandardModal, setOpenStandardModal,
                 openQuotationModal, setOpenQuotationModal,
-                selectedPlan, setSelectedPlan
+                selectedPlan, setSelectedPlan, currency, 
+                setCurrency, format
             }}
         >
             {children}

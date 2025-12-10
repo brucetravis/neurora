@@ -48,7 +48,9 @@ export default function StandardPricingModal({ aiPlans, swPlans }) {
   }
 
   // Get the states from the context
-  const { selectedPlan, openStandardModal, setOpenStandardModal } = usePricing();
+  const { selectedPlan, openStandardModal, setOpenStandardModal, 
+        currency, format
+      } = usePricing();
 
   if (!selectedPlan) return null; // safety check
 
@@ -419,7 +421,7 @@ export default function StandardPricingModal({ aiPlans, swPlans }) {
             <div>
               <div>
                 <h4>You are about to purchase our <strong>{selectedPlan.name}</strong> Plan</h4>
-                <p className='cost'>Pay <strong>{selectedPlan.usd.toLocaleString()}</strong> for this service</p>
+                <p className='cost'>Pay <strong>{format(selectedPlan.usd)}</strong> for this service</p>
               </div>
 
 
