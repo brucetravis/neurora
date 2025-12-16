@@ -1,12 +1,14 @@
 import React from 'react'
 import './About.css'
+// import HologramSphere from '../../../../components/hologramsphere/HologramSphere'
+import RobotGif from '../../../../videos/robot-unscreen.gif'
 import { useSpring, animated, useInView } from '@react-spring/web'
-import HologramSphere from '../../../../components/hologramsphere/HologramSphere'
+// import HologramSphere from '../../../../components/hologramsphere/HologramSphere'
 
 export default function About() {
 
   // states to control the section view
-  const [ ref, inView ] = useInView(({ triggerOnce: true, threshold: 0.2 }))
+  const [ ref, inView ] = useInView({ triggerOnce: true, threshold: 0.2 })
 
   // // stagger: title then paragraph
   const titleSpring = useSpring({
@@ -24,6 +26,13 @@ export default function About() {
   });
 
 
+  const imageSpring = useSpring({
+    opacity: inView ? 1 : 0,
+    transform: inView ? 'translateX(0px)' : 'translateX(-30px)',
+    // transform: inView ? 'transformX(0px)' : 'transformX(-30px)',
+    config: { tension: 200, friction: 22 },
+    delay: 250
+  })
 
   return (
     <section className="about-hero" aria-labelledby='about-title' ref={ref}>
@@ -35,12 +44,25 @@ export default function About() {
       <div
         className='about-inner container'
       >
-        <div className='about-left col-md-6 col-lg-6'>
-          <HologramSphere />
+        <div 
+          className='about-left col-md-6 col-lg-6 col-sm-12'
+        >
+
+          <animated.img 
+            src={RobotGif} 
+            alt="Robot animation" 
+            style={{
+              ...imageSpring,
+              width: "100%", 
+              height: "100%", 
+              objectFit: "cover" 
+            }} 
+          />
+
         </div>
 
         <div
-          className='about-right col-md-6 col-lg-6'
+          className='about-right col-md-6 col-lg-6 col-sm-12'
         >
 
           <animated.h2 style={titleSpring} className="about-heading" >
