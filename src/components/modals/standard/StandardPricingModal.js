@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './StandardPricingModal.css'
 // import { useParams } from 'react-router-dom'
 import { usePricing } from '../../../contexts/PricingProvider'
@@ -9,9 +9,7 @@ import { toast } from 'react-toastify'
 export default function StandardPricingModal({ aiPlans, swPlans }) {
   
   const [ activeEntity, setActiveEntity ] = useState(null)
-
   const [ showPurchaseSection, setShowPurchaseSection ] = useState(false)
-
 
   // state to show the form submission
   const [ isSubmit, setIsSubmit ] = useState(false) // initial state is false meaning no current submisison
@@ -48,80 +46,104 @@ export default function StandardPricingModal({ aiPlans, swPlans }) {
   }
 
   // Get the states from the context
-  const { selectedPlan, openStandardModal, setOpenStandardModal, 
-        currency, format
-      } = usePricing();
+  const { selectedPlan, openStandardModal, setOpenStandardModal,
+    email, amount, setEmail, handlePayment, verifyPayment, format
+  } = usePricing();
 
-  if (!selectedPlan) return null; // safety check
+  // if (!selectedPlan) return null; // safety check
 
-
-  // function to submit the data to firebase and handle te payment integration
   const handleSubmit = async (e) => {
     e.preventDefault()
-
     setIsSubmit(true)
-    
+
     try {
-      // create a reference to the collection according to the entity the user chooses
-      const collectionRef = collection(db, userData.entity_type)
+      // 1. Save user data BEFORE redirect
+      localStorage.setItem(
+        'pending_purchase',
+        JSON.stringify({
+          userData,
+          selectedPlan
+        })
+      )
 
+      // 2. Start payment (this will redirect)
+      await handlePayment() // redirects to Paystack
+      // nothing after this runs until user returns
 
-      // Pick the correct name based on the entity type
-      let nameField = ''
-      // Pick the name title based on the entity type
-      let name_title = ''
-
-      switch(userData.entity_type) {
-        case 'personal':
-          nameField = userData.clientName;
-          name_title = 'clientName'
-          break
-        
-        case 'business':
-          nameField = userData.businessName
-          name_title = 'businessName'
-          break
-
-        case 'enterprise':
-          nameField = userData.enterpriseName
-          name_title = 'enterpriseName'
-          break
-        
-        case 'organization':
-          nameField = userData.organizationName
-          name_title = 'organizationName'
-          break
-          
-        default:
-          nameField = 'Not Provided'
-          name_title = 'Not Provided'
-      }
-
-
-      // build the document to send
-      const dataToSend = {
-        entityType: userData.entity_type,
-        softwareType: userData.software_type,
-        domainName: userData.domain_name,
-        maintenance: userData.maintenance,
-        [name_title]: nameField,
-        plan: selectedPlan.name,
-        charges: selectedPlan.usd
-      }
-
-      await addDoc(collectionRef, dataToSend)
-
-      toast.success('Product successfully purchased.')
-      
-      setIsSubmit(false)
-
-      // reload the page
-      window.location.reload()
-      
     } catch (err) {
-      console.error('Error sending data to firestore: ', err)
+      console.error(err)
+      // toast.error('Something went wrong')
+      setIsSubmit(false)
     }
   }
+
+  // -----------------------------
+  // USE EFFECT: AFTER RETURN FROM PAYSTACK
+  // -----------------------------
+  useEffect(() => {
+    const completePurchase = async () => {
+      const pending = localStorage.getItem('pending_purchase');
+      if (!pending) return;
+
+      const { userData: savedUserData, selectedPlan: savedPlan } = JSON.parse(pending)
+      const paymentReference = localStorage.getItem('payment_reference');
+      if (!paymentReference) return;
+
+      try {
+        const paymentSuccess = await verifyPayment();
+        if (!paymentSuccess) {
+          toast.error('Payment verification failed. Try again.');
+          return;
+        }
+
+        // Save to Firebase
+        const collectionRef = collection(db, savedUserData.entity_type)
+        let nameField = '', name_title = ''
+        switch(savedUserData.entity_type) {
+          case 'personal':
+            nameField = savedUserData.clientName; name_title = 'clientName'; break
+          case 'business':
+            nameField = savedUserData.businessName; name_title = 'businessName'; break
+          case 'enterprise':
+            nameField = savedUserData.enterpriseName; name_title = 'enterpriseName'; break
+          case 'organization':
+            nameField = savedUserData.organizationName; name_title = 'organizationName'; break
+          default:
+            nameField = 'Not Provided'; name_title = 'Not Provided';
+        }
+
+        const dataToSend = {
+          entityType: savedUserData.entity_type,
+          softwareType: savedUserData.software_type,
+          domainName: savedUserData.domain_name,
+          maintenance: savedUserData.maintenance,
+          [name_title]: nameField,
+          plan: savedPlan.name,
+          charges: savedPlan.usd,
+          paymentReference,
+          paymentStatus: 'success'
+        }
+
+        await addDoc(collectionRef, dataToSend)
+        toast.success('Purchase completed successfully!')
+
+        // Clean up
+        localStorage.removeItem('pending_purchase')
+        localStorage.removeItem('payment_reference')
+        setOpenStandardModal(false)
+        window.location.reload()
+
+      } catch (err) {
+        console.error(err)
+        // toast.error('Error completing purchase. Contact support.')
+        console.error('Error completing purchase. Contact support.')
+      }
+    }
+
+    completePurchase()
+
+  }, [verifyPayment, setOpenStandardModal])
+
 
   
 
@@ -418,12 +440,44 @@ export default function StandardPricingModal({ aiPlans, swPlans }) {
           </div>
 
           {showPurchaseSection && (
-            <div>
+            <div
+              className='billing'
+            >
               <div>
                 <h4>You are about to purchase our <strong>{selectedPlan.name}</strong> Plan</h4>
                 <p className='cost'>Pay <strong>{format(selectedPlan.usd)}</strong> for this service</p>
               </div>
 
+              <div
+                className='billing-info'
+              >
+                <div
+                  className='d-flex align-items-start flex-column gap-2'
+                >
+                  <label htmlFor='email'>Email: </label>
+
+                  <input 
+                    type='email'
+                    placeholder='johndoe@gmail.com'
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
+                </div>
+
+                <div
+                  className='d-flex align-items-start flex-column gap-2'
+                >
+                  <label htmlFor='amount'>Price in KES: </label>
+
+                  <input 
+                    type='number'
+                    value={amount}
+                    disabled
+                  />
+                </div>
+
+              </div>
 
               <div className='payment-buttons'>
                 <button

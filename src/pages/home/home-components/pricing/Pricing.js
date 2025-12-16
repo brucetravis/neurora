@@ -4,21 +4,15 @@ import { useInView } from 'react-intersection-observer';
 import { useSpring, useSprings, animated } from '@react-spring/web';
 import { usePricing } from '../../../../contexts/PricingProvider';
 
-// -----------------------------
-//  PRICING COMPONENT
-// -----------------------------
+
 export default function Pricing() {
     const [ref, inView] = useInView({ threshold: 0.2 });
 
     // get the necessary functions from the pricing provider
     const { setSelectedPlan, setOpenStandardModal, setOpenQuotationModal, 
-            currency, setCurrency, format
+            currency, setCurrency
         } = usePricing();
 
-
-    // -----------------------------
-    //  MEMOIZED PLANS
-    // -----------------------------
     const aiPlans = useMemo(() => [
         {
             id: 'ai-basic',
@@ -146,35 +140,12 @@ export default function Pricing() {
         config: { mass: 1, tension: 200, friction: 24 },
     }));
 
-    // // trigger animation when inView becomes true
-    // useEffect(() => {
-    // if (inView) {
-    //     api.start((i) => ({
-    //     opacity: 1,
-    //     x: 0,
-    //     y: 0,
-    //     delay: i * 100 + extraDelay
-    //     }));
-    // }
-    // }, [inView, api]);
-
     const [swCardSprings, swApi] = useSprings(swPlans.length, (i) => ({
         opacity: 0,
         x: i % 2 === 0 ? -50 : 50, // left/right start
         y: 50,                      // start lower
         config: { mass: 1, tension: 200, friction: 24 },
     }));
-
-    // useEffect(() => {
-    //     if (inView) {
-    //         swApi.start((i) => ({
-    //         opacity: 1,
-    //         x: 0,
-    //         y: 0,
-    //         delay: i * 100 + 200, // offset slightly after AI cards
-    //         }));
-    //     }
-    // }, [inView, api, swApi]);
 
     useEffect(() => {
         if (inView) {
@@ -198,18 +169,28 @@ export default function Pricing() {
         }
     }, [inView, currency, api, swApi]);
 
+    const EUR_RATE = 0.92;
+    const KES_RATE = 130;
 
-    // function to handle the plans
-    const handleStandardPlans = (plan) => {
-        setSelectedPlan(plan);
-        setOpenStandardModal(true);
-    }
+    const format = (usd) => {
+        if (!usd) return '';
+        if (currency === 'USD') return `$${usd.toLocaleString()}`;
+        if (currency === 'EUR') return `€${Math.round(usd * EUR_RATE).toLocaleString()}`;
+        return `KSh ${Math.round(usd * KES_RATE).toLocaleString()}`;
+    };
 
-    // function to handle the plans
-    const handleQuotationPlans = (plan) => {
-        setSelectedPlan(plan);
-        setOpenQuotationModal(true)
-    }
+
+    // // function to handle the plans
+    // const handleStandardPlans = (plan) => {
+    //     setSelectedPlan(plan);
+    //     setOpenStandardModal(true);
+    // }
+
+    // // function to handle the plans
+    // const handleQuotationPlans = (plan) => {
+    //     setSelectedPlan(plan);
+    //     setOpenQuotationModal(true)
+    // }
 
     return (
         <section className="pricing-section" ref={ref}>
@@ -273,7 +254,7 @@ export default function Pricing() {
                                             <li key={idx}>{feature}</li>
                                         ))}
                                     </ul>
-                                    <div className="card-cta">
+                                    {/* <div className="card-cta">
                                         <button 
                                             className={`btn primary ${i === 1 ? 'btn-ghost' : ''}`}
                                             onClick={() => handleStandardPlans(plan)}
@@ -287,7 +268,7 @@ export default function Pricing() {
                                         >
                                             Request Quote
                                         </button>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </animated.article>
                         ))}
@@ -330,7 +311,7 @@ export default function Pricing() {
                                     <li key={idx}>{feature}</li>
                                 ))}
                             </ul>
-                            <div className="card-cta">
+                            {/* <div className="card-cta">
                                 <button 
                                     className="btn primary"
                                     onClick={() => handleStandardPlans(plan) }
@@ -343,7 +324,7 @@ export default function Pricing() {
                                 >
                                     Request quote
                                 </button>
-                            </div>
+                            </div> */}
                         </div>
                         </animated.article>
                     ))}
