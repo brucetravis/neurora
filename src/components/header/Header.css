@@ -1,12 +1,13 @@
 header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-   background: rgba(7, 3, 10, 0.7);
-   backdrop-filter: blur(12px);
-  transition: all 0.25s ease;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(7, 3, 10, 0.7);
+    backdrop-filter: blur(12px);
+    transition: all 0.25s ease;
+    overflow: visible;
 }
 
 /* full height on scroll UP */
@@ -22,18 +23,12 @@ header {
 
 .navbar {
     position: relative;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 1rem 2rem;
-    /* background-color: #fff; */
-    /* background-color: #000000; */
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    /* position: sticky; */
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
     z-index: 1000;
 }
 
@@ -130,13 +125,14 @@ header {
 
 
 /* Mobile Responsive styles */
-.navbar .mobile-menu {
+.mobile-menu {
     position: fixed;
     top: 0;
     right: 0;
     width: 70%;
-    height: 100%;
-    background-color: #1a001f;
+    /* height: 100%; */
+    height: auto;
+    /* background-color: #1a001f; */
     padding: 2rem;
     display: flex;
     flex-direction: column;
@@ -148,18 +144,18 @@ header {
     background: rgba(26, 0, 31, 0.95);
     text-decoration: none;
     transition: color 0.3s ease transform 0.3s ease;
-    z-index: 999;
+    z-index: 5000 !important;
 }
 
 
-.navbar .mobile-menu a {
+.mobile-menu a {
     display: block;
     /* padding: 0.5rem 0; */
     /* font-size: 1.25rem; */
     color: #fff;
     text-decoration: none;
 }
-.navbar .mobile-menu a:hover {
+.mobile-menu a:hover {
     color: #c87cff; /* Bright purple on hover */
     transform: translateY(-2px)
 }
