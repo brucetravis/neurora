@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // use Link for routing
+import { Link} from 'react-router-dom'; // use Link for routing
 import { Menu, X } from 'lucide-react'
 import './Header.css'
 import { useSpring, animated } from '@react-spring/web';
@@ -10,9 +10,6 @@ export default function Header() {
 
   // get the active section from the active context
   const { activeSection } = useActive();
-
-  // import the useNavigate hook from the react router so that we can route to another page
-  const navigation = useNavigate()
 
   // state to open and close the nav bar on a phone/small screen
   const [ menuOpen, setMenuOpen ] = useState(false) // initial state is false
