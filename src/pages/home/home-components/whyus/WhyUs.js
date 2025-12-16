@@ -75,14 +75,6 @@ export default function WhyUs() {
   })
 
 
-  // // React Spring for title animation
-  // const titleSpring = useSpring({
-  //   opacity: inView ? 1 : 0,
-  //   transform: inView ? 'translateY(0px)' : 'translateY(20px)',
-  //   config: { tension: 200, friction: 20 },
-  //   delay: 100
-  // })
-
   const titleSpring2 = useSpring({
     opacity: inView ? 1 : 0,
     transform: inView ? 'translateY(0px)' : 'translateY(20px)',
@@ -91,12 +83,6 @@ export default function WhyUs() {
     })
 
 
-    // const trail = useTrail(points.length, {
-    //     opacity: inView ? 1 : 0,
-    //     transform: inView ? 'translateX(0px)' : 'translateX(-20px)',
-    //     config: { mass: 1, tension: 280, friction: 20 },
-    //     delay: 200
-    // })
 
     return (
         <section className="whyus-hero" ref={ref}>
@@ -110,7 +96,7 @@ export default function WhyUs() {
 
             <div className="whyus-inner">
               <div className="whyus-left">
-                  <Canvas style={{ width: '100%', height: '400px' }}>
+                  <Canvas style={{ width: '100%', height: '400px', pointerEvents: 'none' }}>
                   <ambientLight intensity={1} />
                   <FloatingGif />
                   </Canvas>
