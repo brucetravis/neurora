@@ -54,7 +54,7 @@ export default function Home() {
 
   useEffect(() => {
     
-    // deay to ensure browser layout is ready before scrolling
+    // delay to ensure browser layout is ready before scrolling
     const timer = setTimeout(() => {
       window.scrollTo({ top: 0, left: 0, smooth: 0 })
     }, 0)
