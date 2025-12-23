@@ -27,7 +27,7 @@ export default function Header() {
       const currentY = window.scrollY
 
       // hide the header when scrolling down
-      if (currentY > lastScrollY.current) {
+      if (currentY > lastScrollY) {
         setShowHeader(false)
         
         // show the header when scrolling up
