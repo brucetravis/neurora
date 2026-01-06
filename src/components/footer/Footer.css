@@ -1,7 +1,8 @@
 .footer {
   background: linear-gradient(180deg, #07030a 0%, #0f0420 45%, #13061a 100%);
   color: #d2d8e5;
-  padding: 50px 50px 30px;
+  /* padding: 50px 50px 30px; */
+  padding: 50px;
   height: 50vh;
 }
 
@@ -131,11 +132,15 @@
 }
 
 /* Mobile responsiveness */
-@media (max-width: 990px) {
+@media (max-width: 992px) {
+    .footer {
+      flex-direction: column;
+    }
+    
     .footer-container {
-        flex-direction: column;
-        gap: 20px;
-        align-items: stretch;
+      flex-direction: column;
+      gap: 20px;
+      align-items: stretch;
     }
 
     .contacts-div  .contacts-div-content {
