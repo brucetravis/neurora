@@ -63,7 +63,9 @@ export default function Home() {
   }, [])
 
   return (
-    <div>
+    <div
+      className='home-page'
+    >
       <section ref={heroRef}><Hero /></section>
       <section ref={aboutRef}><About /></section>
       <section ref={servicesRef}><Services /></section>
