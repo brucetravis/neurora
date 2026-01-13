@@ -14,34 +14,41 @@ export default function Header() {
   // state to open and close the nav bar on a phone/small screen
   const [ menuOpen, setMenuOpen ] = useState(false) // initial state is false
 
-  // state to show the header on scroll
-  const [ showHeader, setShowHeader ] = useState(true)
-  // const [ lastScrollY, setLastScrollY ] = useState(0)
+  // state to control header visiblility on page scroll
+  const [ show, setShow ] = useState(true) // initially show the header
 
-  const lastScrollY = useRef(0)
+  // state to track the page position on scroll
+  const [ lastScrollY, setLastScrollY ] = useState(0) // initial state is 0
 
-  // useEffect for side effects
+  // useEffect to keep watch of teh page position on scroll
   useEffect(() => {
-    
-    function handleScroll() {
-      const currentY = window.scrollY
+    // mobile logic
+    if (menuOpen) return // exit theh function
 
-      // hide the header when scrolling down
-      if (currentY > lastScrollY) {
-        setShowHeader(false)
-        
-        // show the header when scrolling up
+    // function to keep track of the page position on scroll
+    const handleScroll = () => {
+      // current scrolling position
+      const currentScrollY = window.scrollY
+
+      if (currentScrollY > lastScrollY) {
+        // hide the header
+        setShow(false)
       } else {
-        setShowHeader(true)
+        //show the header
+        setShow(true)
       }
 
-      // setLastScrollY(currentY)
-      lastScrollY.current = currentY
+
+      setLastScrollY(currentScrollY)
     }
+
     
+    // Track the scrol event through an event listener
     window.addEventListener("scroll", handleScroll)
+    // clean up
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+
+  }, [lastScrollY, menuOpen]) // watch out for the position
 
 
   // React spring animation function
@@ -88,7 +95,7 @@ export default function Header() {
   return (
     <header 
       // style={headerSpring}
-      className={ showHeader ? 'header-expanded' : 'header-shrink'}
+      className={`header ${show ? 'show' : 'hide'}`}
     >
       <nav className="navbar">
         <div className="logo">
