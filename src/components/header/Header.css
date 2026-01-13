@@ -191,5 +191,12 @@
         right: 10px;
         z-index: 1000
     }
+    
+}
+
+@media screen and (max-width: 468px) {
+    .navbar .btn-primary {
+        display: none
+    }
 }
 
