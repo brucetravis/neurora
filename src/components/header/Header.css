@@ -7,19 +7,11 @@
     top: 0;
     width: 100%;
     z-index: 1000;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
     box-sizing: border-box;
-    overflow: visible;
-
-    /* position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
     background: rgba(7, 3, 10, 0.7);
     backdrop-filter: blur(12px);
-    transition: all 0.25s ease;
-    overflow: visible; */
+    overflow: visible;
 }
 
 
