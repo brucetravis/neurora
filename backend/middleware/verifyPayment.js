@@ -1,20 +1,18 @@
-// Middleware to check if the reference exists
+// Middleware to verify payments
+
 
 const verifyPaymentMiddleware = (req, res, next) => {
 
-    // get the reference from the request parameter
-    const { reference } = req.params
+    // destructure the reference from the request body
+    const { reference } = req.body
 
-    // check if the reference exists
+    // check if the reference has been provided
     if (!reference) {
-        // send an error message if it does not exist
-        return res.status(400).json({ message: 'Invalid or missing payment reference.' })
+        // send a 400 bad request invalid error
+        return res.status(400).json({ message: 'Payment reference midding '})
     }
-    
-    // if it is available, move on to the next middleware or controller function
-    next()
-
 }
+
 
 // export the middleware
 module.exports = verifyPaymentMiddleware
