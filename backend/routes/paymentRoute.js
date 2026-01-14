@@ -1,23 +1,27 @@
-// import the express module
+// import the express framework
 const express = require('express')
 
-// create a minimalist express router
+// create a minimal router using the express framework
 const router = express.Router()
 
-// import the controller functiont to intiate and verify payments
+// import the payment controller functions
 const { initiatePayment, verifyPayment } = require('../controllers/paymentController')
 
-// import the middleware to initiate the payment
-const initPaymentMiddleware = require('../middleware/initiatePayment')
+// import the middleware functions
 
-// import the middleware to verify the payment
-const verifyPaymentMiddleware = require('../middleware/verifyPayment')
+// middleware to initiate payments
+const { initPaymentMiddleware } = require("../middleware/initiatePayment")
 
-// url to initiate the payment
-router.post('/initPayment', initPaymentMiddleware, initiatePayment)
-// route to verify the payment
-router.post('/verifyPayment/:reference', verifyPaymentMiddleware, verifyPayment)
+// Middleware to verify payments
+const { verifyPaymentMiddleware } = require("../middleware/verifyPayment")
+
+router.post('/initPayment', initPaymentMiddleware,initiatePayment) // Route to initiate payment
+
+// route to verify payment
+// verifyPayment:reference route to a dynamic parameter
+// :reference captures the transaction reference from the URL
+router.get('/verifyPayment:reference', verifyPaymentMiddleware, verifyPayment)
 
 
-// export the router to gain access to it in server.js
+// export the route
 module.exports = router

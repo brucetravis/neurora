@@ -1,84 +1,92 @@
-// import the axios module so that we can make http requests
+// import axios fro the axios module
 const axios = require('axios')
 
-
-// function to initiate user payments
+// function to initialize/initiate payment
 const initiatePayment = async (req, res) => {
+    // Destructure and extract data from the request body
+    const { email, amount } = req.body // Object destructuring
 
-    // get the email and the amount from the frontend
-    const { email, amount } = req.body
+    // validate the request data
+
+    // if the email or amount is missing, send a 400 Bad request which means invalid data
+    if (!email || !amount) {
+        return res.status(400).json({ message: "Email and amount are required" })
+    }
 
     try {
-        // log the email, amount and the paystack secret key for debugging purposes
-        console.log(email, amount, process.env.PAYSTACK_SECRET_KEY)
-        
-        // make a post request to paystack to initialize the payment
+
         const response = await axios.post(
-            'https://api.paystack.co/transaction/initialize', // endpoint that creates tha payment in paystack
-            // send the email and amount from the client to the paystack server
+            'https://api.paystack.co/transaction/initiaize', // Paystack API endpoint for initializing a transaction
+
+            // send the email and amount (amount send in kobo)
             {
                 email,
-                amount: amount * 100 // Nigerian Naira MUST BE IN KOBO
+                amount: amount * 100
             },
+
             {
-                // Tell paystack that the paymetn is coming from you
                 headers: {
-                    Authorization: `Bearer ${process.env.PAYSTACK_SECRET_KEY}`,
+                    Authorization: `Bearer ${process.env.PAYSTACK_SECRET_KEY}`, // paystack secret key from environment variables
                     'Content-Type': 'application/json'
                 }
             }
+
         )
 
-        // paystack responds with the authorization_url (The link used to pay that will open in the frontend)
-        // and the reference (a unique id for the payment transaction)
+        // send the response data back to the frontend to verify the transaction
+        
         res.status(200).json({
+            // send the authorization url to redirect the user to paystack checkout
             authorization_url: response.data.data.authorization_url,
             reference: response.data.data.reference
         })
 
-    } catch (err) {
-        console.error('PAYMENT ERROR: Error initiating payment')
-        res.status(500).json({ message: "Payment Initialization: Internal server Error." })
+    } catch (error) {
+        console.error("Error initiating payment: ", error.message)
+        res.status(500).json({ message: "Internal server error" })
     }
+
 }
 
-// function to verify payments using the reference
+
+// function to verify payments
 const verifyPayment = async (req, res) => {
 
-    // get the payment reference from the request parameter from the frontend
+    // Destructure and extract the payment reference from the request parameter to verify the transaction
     const { reference } = req.params
 
     try {
-        // get the response from paystack
-        const response = await axios.get(
-            `https://api.paystack.co/transaction/verify/${reference}`,
+        const response = await axios.get( // GET request to paystack to check the status of a transaction
+            `http://api.paystack.co/transaction/verify/${reference}`,
             {
                 headers: {
-                    Authorization: `Bearer ${process.env.PAYSTACK_SECRET_KEY}`
+                    Authorization: `Bearer ${process.env.PAYSTACK_SECRET_KEY}`,
+                    "Content-Type": 'application/json'
                 }
             }
         )
 
-        // Check if paystacks response was that It was successful
+        // Check if the transaction was successful
         if (response.data.data.status === 'success') {
-            console.log(response.data.data.status)
-            console.error('Payment verification successful.')
-            return res.status(200).json({ message: 'Payment verified successfully', data: response.data.data })
+            console.log(res.data.data);
+            console.log('Payment verification successful')
+            return res.status(200).json({
+                message: 'Payment verified successfully',
+                data: response.data.data
+            })
         } else {
             console.log(response.data.data.status)
-            console.error('Error verifying payments.')
-            res.status(500).json({ message: 'Payment verification: Error verifying payments.' })
+            console.error('Payment verification failed.')
+            return res.status(500).json({ message: 'Payment verification failed.'})
         }
 
 
-    } catch (err) {
-        console.error('Error verifying payment: ', err)
-        return res.status(500).json({ 
-            message: "BACKEND: Error verifying payment", 
-            error: err.message
-        })
+    } catch (error) {
+        console.error("Error verifying payment: ", error.message)
+        return res.status(500).json({ message: "Internal server error."})
     }
 }
+
 
 
 
