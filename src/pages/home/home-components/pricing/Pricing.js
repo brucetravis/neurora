@@ -87,7 +87,7 @@ export default function Pricing() {
                 <animated.div style={sectionSpring} className='pricing-inner'>
                     <div className="pricing-inner">
                         <h4 className="pricing-kicker">Pricing Plans</h4>
-                        <h2 className="pricing-heading">EXPLORE OUR AFFORDABLE PLANS</h2>
+                        <h2 className="pricing-heading">EXPLORE OUR AFFORDABLE AI AND SMART SOFTWARE PLANS</h2>
 
                         <div className="currency-toggle">
                         <div className="toggle-label">Currency</div>
