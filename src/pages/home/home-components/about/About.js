@@ -70,11 +70,13 @@ export default function About() {
           </animated.h2>
 
           <animated.p style={paraSpring} className="about-lead">
-            At Neurora, we create AI-powered software and smart digital solutions that help businesses scale effortlessly. 
-            From intuitive websites and feature-rich mobile apps to advanced machine learning tools, tailored automation, 
-            and AI solutions available for subscription or rental, we design technology that streamlines workflows, 
-            boosts efficiency, and drives measurable growth. Our offerings empower startups, SMEs, and enterprises 
-            to turn ideas into results, optimize operations, and transform visitors into loyal customers.
+            Neurora is a software development company that develops smart software tailored 
+            to your business needs. At Neurora, we create AI-powered software and smart 
+            digital solutions that help businesses scale effortlessly. From intuitive websites 
+            and feature-rich mobile apps to advanced machine learning tools, tailored automation, 
+            and AI solutions available for subscription or rental, we design technology that streamlines 
+            workflows, boosts efficiency, and drives measurable growth. Our offerings empower startups, SMEs, 
+            and enterprises to turn ideas into results, optimize operations, and transform visitors into loyal customers.
           </animated.p>
         </div>
 
