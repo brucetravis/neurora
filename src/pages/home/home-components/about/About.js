@@ -1,9 +1,7 @@
 import React from 'react'
 import './About.css'
-// import HologramSphere from '../../../../components/hologramsphere/HologramSphere'
 import RobotGif from '../../../../videos/robot-unscreen.gif'
 import { useSpring, animated, useInView } from '@react-spring/web'
-// import HologramSphere from '../../../../components/hologramsphere/HologramSphere'
 
 export default function About() {
 
@@ -50,7 +48,7 @@ export default function About() {
 
           <animated.img 
             src={RobotGif} 
-            alt="Robot animation" 
+            alt="Neurora AI software Illustrution" 
             style={{
               ...imageSpring,
               width: "100%", 
@@ -70,13 +68,13 @@ export default function About() {
           </animated.h2>
 
           <animated.p style={paraSpring} className="about-lead">
-            Neurora is a software development company that develops smart software tailored 
-            to your business needs. At Neurora, we create AI-powered software and smart 
-            digital solutions that help businesses scale effortlessly. From intuitive websites 
-            and feature-rich mobile apps to advanced machine learning tools, tailored automation, 
-            and AI solutions available for subscription or rental, we design technology that streamlines 
-            workflows, boosts efficiency, and drives measurable growth. Our offerings empower startups, SMEs, 
-            and enterprises to turn ideas into results, optimize operations, and transform visitors into loyal customers.
+            Neurora is a <strong>software development company</strong> that develops <strong>smart software</strong> tailored 
+            to your business needs. At Neurora, we create <stong>AI-powered software solutions</stong> and intelligent
+            digital tools that help businesses scale effortlessly, streamline workflows, and achieve measurable growth.
+            From intuitive websites and feature-rich mobile apps to advanced machine learning tools, tailored automation, 
+            and AI solutions available for subscription or rental, we design technology that streamlines workflows, boosts 
+            efficiency, and drives measurable growth. We empower startups, SMEs, and enterprises to turn ideas 
+            into results, optimize operations, and transform visitors into loyal customers.
           </animated.p>
         </div>
 
