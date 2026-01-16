@@ -10,12 +10,13 @@ export default function Services() {
 
   // an array of services
   const services = [
-    { icon: <Monitor size={32} color="#c87cff" />, title: 'Web Development', description: 'Responsive websites, custom interfaces, and e-commerce solutions integrated with AI.' },
-    { icon: <Smartphone size={32} color="#c87cff" />, title: 'Smart Mobile Apps', description: 'Feature-rich smart mobile apps for iOS and Android platforms integrated with AI.' },
-    { icon: <Cpu size={32} color="#c87cff" />, title: 'Machine Learning Tools', description: 'AI-powered predictive and analytics solutions.' },
-    { icon: <Settings size={32} color="#c87cff" />, title: 'Automation Solutions', description: 'Streamline business processes with intelligent automation.' },
-    { icon: <Zap size={32} color="#c87cff" />, title: 'AI Subscriptions & Rentals', description: 'Pay-as-you-go AI tools and services for businesses.' },
+    { icon: <Monitor size={32} color="#c87cff" />, title: 'AI-Powered Web Development', description: 'Responsive websites, custom interfaces, and e-commerce solutions integrated with AI.' },
+    { icon: <Smartphone size={32} color="#c87cff" />, title: 'Smart Mobile Apps', description: 'Feature-rich **AI-integrated mobile apps** for iOS and Android platforms.' },
+    { icon: <Cpu size={32} color="#c87cff" />, title: 'Machine Learning Tools', description: 'Predictive analytics and **AI-powered software solutions** to optimize business workflows.' },
+    { icon: <Settings size={32} color="#c87cff" />, title: 'Automation Solutions', description: 'Intelligent automation for streamlining business processes efficiently.' },
+    { icon: <Zap size={32} color="#c87cff" />, title: 'AI Subscriptions & Rentals', description: 'Pay-as-you-go **AI software solutions** and tools for businesses.' },
   ]
+
 
   // Animate heading + lead text
   const textSpring = useSpring({
@@ -43,11 +44,14 @@ export default function Services() {
         className="section-inner"
       >
         <animated.h2 style={textSpring} className='services-heading' id="services-title">
-          Intelligent Solutions for Your Business
+          AI-Powered Software Solutions and Intelligent Tools for Your Business
         </animated.h2>
 
         <animated.p style={textSpring} className='services-lead'>
-          We provide AI-powered software and smart digital solutions that help businesses scale effortlessly, streamline workflows, and achieve measurable growth.
+          At Neurora, we deliver **AI-powered software solutions**, **smart software tools**, and **intelligent digital systems** 
+          that help businesses scale effortlessly, streamline workflows, and achieve measurable growth. From **web development** 
+          and **smart mobile apps** to **automation solutions** and **AI subscriptions**, we design technology tailored for startups, 
+          SMEs, and enterprises.
         </animated.p>
 
         <div className='services-grid'>
