@@ -87,7 +87,7 @@ export default function Pricing() {
                 <animated.div style={sectionSpring} className='pricing-inner'>
                     <div className="pricing-inner">
                         <h4 className="pricing-kicker">Pricing Plans</h4>
-                        <h2 className="pricing-heading">EXPLORE OUR AFFORDABLE PLANS</h2>
+                        <h2 className="pricing-heading">EXPLORE OUR AFFORDABLE AI AND SMART SOFTWARE PLANS</h2>
 
                         <div className="currency-toggle">
                         <div className="toggle-label">Currency</div>
@@ -113,8 +113,11 @@ export default function Pricing() {
                     {/* AI Services */}
                     <div className="section-block ai-block">
                         <div className="section-header">
-                        <h3 className="section-title">AI Services</h3>
-                        <p className="section-sub">AI websites, apps, and bespoke AI systems — designed for measurable ROI.</p>
+                        <h3 className="section-title">AI-Powered Software Solutions</h3>
+                        <p className="section-sub">
+                            Websites | smart mobile apps | **AI-integrated systems** designed to boost efficiency.
+                        </p>
+
                         </div>
 
                         <div className="cards-grid">

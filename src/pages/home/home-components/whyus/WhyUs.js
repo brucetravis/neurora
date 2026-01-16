@@ -51,10 +51,10 @@ export default function WhyUs() {
 
   // Points for trail animation
   const points = [
-    'Cutting-edge AI solutions',
-    'Streamlined business automation',
-    'Scalable and robust software',
-    'Expert support & consultation'
+    'Cutting-edge AI-powered software solutions',
+    'Streamlined business automation and workflows',
+    'Scalable and robust smart software',
+    'Expert consultation and AI system support'
   ]
 
   // React Spring for smooth, non-conflicting animations
@@ -86,12 +86,15 @@ export default function WhyUs() {
 
     return (
         <section className="whyus-hero" ref={ref}>
-            <animated.h4 style={{ opacity: titleSpring.opacity, transform: titleSpring.y.to(v => `translateY(${v}px)`) }} className="whyus-title">
+            <animated.h4 
+              style={{ opacity: titleSpring.opacity, transform: titleSpring.y.to(v => `translateY(${v}px)`) }} 
+              className="whyus-title"
+            >
               Why Neurora
             </animated.h4>
 
             <animated.h2 style={titleSpring2} className="whyus-heading">
-              AI-Driven Solutions That Scale <span className="accent">Your Business</span>
+              AI-Powered Software Solutions That Scale <span className="accent">Your Business</span>
             </animated.h2>
 
             <div className="whyus-inner">
@@ -105,7 +108,7 @@ export default function WhyUs() {
               <div className="whyus-right">
                   {trail.map((props, index) => (
                     <animated.div key={index} style={props} className="whyus-point">
-                        {points[index]}
+                      {points[index]}
                     </animated.div>
                   ))}
               </div>
