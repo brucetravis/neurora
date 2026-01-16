@@ -10,17 +10,17 @@ const { initiatePayment, verifyPayment } = require('../controllers/paymentContro
 // import the middleware functions
 
 // middleware to initiate payments
-const { initPaymentMiddleware } = require("../middleware/initiatePayment")
+const initPaymentMiddleware  = require("../middleware/initiatePayment")
 
 // Middleware to verify payments
-const { verifyPaymentMiddleware } = require("../middleware/verifyPayment")
+const verifyPaymentMiddleware  = require("../middleware/verifyPayment")
 
-router.post('/initPayment', initPaymentMiddleware,initiatePayment) // Route to initiate payment
+router.post('/initPayment', initPaymentMiddleware, initiatePayment) // Route to initiate payment
 
 // route to verify payment
 // verifyPayment:reference route to a dynamic parameter
 // :reference captures the transaction reference from the URL
-router.get('/verifyPayment:reference', verifyPaymentMiddleware, verifyPayment)
+router.get('/verifyPayment/:reference', verifyPaymentMiddleware, verifyPayment)
 
 
 // export the route
