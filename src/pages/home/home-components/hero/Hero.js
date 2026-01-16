@@ -54,12 +54,12 @@ export default function Hero() {
         </animated.h3>
         
         <animated.h1 style={heroTitleSpring}>
-          Empowering the Future with <span className="highlight">Intelligent Software</span>
+          Empowering the Future with <span className="highlight">AI-Powered Software Solutions</span>
         </animated.h1>
 
         <animated.p style={heroTextSpring}>
-          At Neurora, we fuse artificial intelligence with human creativity —
-          crafting systems that think, adapt, and evolve with your business.
+          At Neurora, we create <strong className='highlight'>intelligent software</strong> and smart digital tools
+          that help businesses scale effortlessly, streamline workflows, and achieve measurable growth.
         </animated.p>
 
       </div>
