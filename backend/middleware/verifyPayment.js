@@ -11,6 +11,9 @@ const verifyPaymentMiddleware = (req, res, next) => {
         // send a 400 bad request invalid error
         return res.status(400).json({ message: 'Payment reference midding '})
     }
+
+    // move to the next middleware
+    next()
 }
 
 
