@@ -80,7 +80,7 @@
   color: #fff;
 }
 
-.hero h1 .highlight {
+.hero .highlight {
   color: #c87cff;
   text-shadow: 0 0 15px rgba(200, 124, 255, 0.8);
 }
