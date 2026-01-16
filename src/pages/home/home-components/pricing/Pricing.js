@@ -113,8 +113,11 @@ export default function Pricing() {
                     {/* AI Services */}
                     <div className="section-block ai-block">
                         <div className="section-header">
-                        <h3 className="section-title">AI Services</h3>
-                        <p className="section-sub">AI websites, apps, and bespoke AI systems — designed for measurable ROI.</p>
+                        <h3 className="section-title">AI-Powered Software Solutions</h3>
+                        <p className="section-sub">
+                            Websites | smart mobile apps | **AI-integrated systems** designed to boost efficiency.
+                        </p>
+
                         </div>
 
                         <div className="cards-grid">
