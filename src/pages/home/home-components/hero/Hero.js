@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import './Hero.css';
 import { useSpring, animated } from '@react-spring/web';
 import StarField from '../../../../components/starfield/StarField';
-import { Helmet } from 'react-helmet';
 
 export default function Hero() {
 
@@ -43,37 +42,27 @@ export default function Hero() {
 
 
   return (
-    <>
-      <Helmet>
-        <title>Neurora – Intelligent Software & AI Solutions</title>
-        <meta 
-          name="description"
-          content="Neurora develops intelligent software and AI-powered digital solutions that help businesses scale, streamline workflows, and achieve measurable growth." 
-        />
-      </Helmet>
+    <section className="hero">
+      <div className="overlay"></div>
 
-      <section className="hero">
-        <div className="overlay"></div>
+      <StarField count={500} mousePos={mousePos} /> {/* Dynamic stars */}
+      
+      <div className="hero-content">
 
-        <StarField count={500} mousePos={mousePos} /> {/* Dynamic stars */}
+        <animated.h3 style={heroTitleSpring}>
+          Welcome to Neurora
+        </animated.h3>
         
-        <div className="hero-content">
+        <animated.h1 style={heroTitleSpring}>
+          Empowering the Future with <span className="highlight">AI-Powered Software Solutions</span>
+        </animated.h1>
 
-          <animated.h3 style={heroTitleSpring}>
-            Welcome to Neurora
-          </animated.h3>
-          
-          <animated.h1 style={heroTitleSpring}>
-            Empowering the Future with <span className="highlight">AI-Powered Software Solutions</span>
-          </animated.h1>
+        <animated.p style={heroTextSpring}>
+          At Neurora, we create <strong className='highlight'>intelligent software</strong> and smart digital tools
+          that help businesses scale effortlessly, streamline workflows, and achieve measurable growth.
+        </animated.p>
 
-          <animated.p style={heroTextSpring}>
-            At Neurora, we create <strong className='highlight'>intelligent software</strong> and smart digital tools
-            that help businesses scale effortlessly, streamline workflows, and achieve measurable growth.
-          </animated.p>
-
-        </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }
