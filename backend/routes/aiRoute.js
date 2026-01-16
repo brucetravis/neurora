@@ -39,6 +39,9 @@ router.post("/chat", async (req, res) => {
 
                     Pricing: Review the official pricing section before answering questions about costs.
                     CEO: Bruce Travis is the Founder/CEO of NeuroraInnovations.
+                    About Bruce Travis: Bruce Travis is a Techpreneur in the Tech an robotics space. He is a cybersecurity major and 
+                                        Tech enthusiast. He founded Neurora in 2025 and has been a leading inovator in the software development 
+                                        sector.
                     Feedback: After payment we MUST schedule a meeting with the client.
                     Hosting: Hosting fees are separate from the developers charges.
                     Domain: Domain fees are separate from the developers charges. If the client does not have a 
