@@ -82,69 +82,79 @@ export default function StandardPricingModal({ aiPlans, swPlans }) {
   // -----------------------------
   useEffect(() => {
     const completePurchase = async () => {
-      const pending = localStorage.getItem('pending_purchase');
-      if (!pending) return;
+        const pending = localStorage.getItem('pending_purchase');
+        const paymentReference = localStorage.getItem('payment_reference');
+        
+        // DEBUG
+        console.log('Checking for pending purchase...')
+        console.log('Pending data:', pending ? 'EXISTS' : 'NONE')
+        console.log('Payment reference:', paymentReference || 'NONE')
 
-      const { userData: savedUserData, selectedPlan: savedPlan } = JSON.parse(pending)
-      const paymentReference = localStorage.getItem('payment_reference');
-      if (!paymentReference) return;
-
-      try {
-        const paymentSuccess = await verifyPayment();
-        if (!paymentSuccess) {
-          toast.error('Payment verification failed. Try again.');
-          return;
+        if (!pending || !paymentReference) {
+            console.log('No pending purchase or reference found')
+            return;
         }
 
-        // Save to Firebase
-        const collectionRef = collection(db, savedUserData.entity_type)
-        let nameField = '', name_title = ''
-        switch(savedUserData.entity_type) {
-          case 'personal':
-            nameField = savedUserData.clientName; name_title = 'clientName'; break
-          case 'business':
-            nameField = savedUserData.businessName; name_title = 'businessName'; break
-          case 'enterprise':
-            nameField = savedUserData.enterpriseName; name_title = 'enterpriseName'; break
-          case 'organization':
-            nameField = savedUserData.organizationName; name_title = 'organizationName'; break
-          default:
-            nameField = 'Not Provided'; name_title = 'Not Provided';
+        const { userData: savedUserData, selectedPlan: savedPlan } = JSON.parse(pending)
+
+        try {
+            console.log('Verifying payment...')
+            const paymentSuccess = await verifyPayment();
+            
+            if (!paymentSuccess) {
+                toast.error('Payment verification failed. Try again.');
+                return;
+            }
+
+            console.log('Payment verified! Saving to Firebase...')
+
+            // Save to Firebase
+            const collectionRef = collection(db, savedUserData.entity_type)
+            let nameField = '', name_title = ''
+            
+            switch(savedUserData.entity_type) {
+                case 'personal':
+                    nameField = savedUserData.clientName; name_title = 'clientName'; break
+                case 'business':
+                    nameField = savedUserData.businessName; name_title = 'businessName'; break
+                case 'enterprise':
+                    nameField = savedUserData.enterpriseName; name_title = 'enterpriseName'; break
+                case 'organization':
+                    nameField = savedUserData.organizationName; name_title = 'organizationName'; break
+                default:
+                    nameField = 'Not Provided'; name_title = 'Not Provided';
+            }
+
+            const dataToSend = {
+                entityType: savedUserData.entity_type,
+                softwareType: savedUserData.software_type,
+                domainName: savedUserData.domain_name,
+                maintenance: savedUserData.maintenance,
+                [name_title]: nameField,
+                plan: savedPlan.name,
+                charges: savedPlan.usd,
+                paymentReference,
+                paymentStatus: 'success'
+            }
+
+            await addDoc(collectionRef, dataToSend)
+            toast.success('Purchase completed successfully!')
+
+            // Clean up
+            localStorage.removeItem('pending_purchase')
+            localStorage.removeItem('payment_reference')
+            setOpenStandardModal(false)
+            window.location.reload()
+
+        } catch (err) {
+            console.error('Error completing purchase:', err)
+            toast.error('Error completing purchase. Contact support.')
         }
-
-        const dataToSend = {
-          entityType: savedUserData.entity_type,
-          softwareType: savedUserData.software_type,
-          domainName: savedUserData.domain_name,
-          maintenance: savedUserData.maintenance,
-          [name_title]: nameField,
-          plan: savedPlan.name,
-          charges: savedPlan.usd,
-          paymentReference,
-          paymentStatus: 'success'
-        }
-
-        await addDoc(collectionRef, dataToSend)
-        toast.success('Purchase completed successfully!')
-
-        // Clean up
-        localStorage.removeItem('pending_purchase')
-        localStorage.removeItem('payment_reference')
-        setOpenStandardModal(false)
-        window.location.reload()
-
-      } catch (err) {
-        console.error(err)
-        // toast.error('Error completing purchase. Contact support.')
-        console.error('Error completing purchase. Contact support.')
-      }
     }
 
     completePurchase()
 
-  }, [verifyPayment, setOpenStandardModal])
-
-
+}, [verifyPayment, setOpenStandardModal])
   
 
   return (
