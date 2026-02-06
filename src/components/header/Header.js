@@ -5,11 +5,15 @@ import './Header.css'
 import { useSpring, animated } from '@react-spring/web';
 import { useTrail } from '@react-spring/web';
 import { useActive } from '../../contexts/active/ActiveContext';
+import { useScrollRefs } from '../contexts/scrollContext';
 
 export default function Header() {
 
   // get the active section from the active context
   const { activeSection } = useActive();
+
+  // get the sctollToSection function from the header so that a user can scroll to a section when a link is clicked
+  const { scrollToSection } = useScrollRefs()
 
   // state to open and close the nav bar on a phone/small screen
   const [ menuOpen, setMenuOpen ] = useState(false) // initial state is false
@@ -98,36 +102,42 @@ export default function Header() {
           <AnimatedLink 
             to="/"
             style={getLinkSpring(activeSection === 'hero')}
+            onClick={() => scrollToSection('hero')}
           >
             Home
           </AnimatedLink>
 
           <AnimatedLink 
             style={getLinkSpring(activeSection === 'about')}
+            onClick={() => scrollToSection('about')}
           >  
             About
           </AnimatedLink>
 
           <AnimatedLink 
             style={getLinkSpring(activeSection === 'services')}
+            onClick={() => scrollToSection('services')}
           >
             Services
           </AnimatedLink>
           
           <AnimatedLink 
             style={getLinkSpring(activeSection === 'whyus')}
+            onClick={() => scrollToSection('whyus')}
           >
             Why Us
           </AnimatedLink>
           
           <AnimatedLink 
             style={getLinkSpring(activeSection === 'pricing')}
+            onClick={() => scrollToSection('pricing')}
           >
             Prices
           </AnimatedLink>
           
           <AnimatedLink 
             style={getLinkSpring(activeSection === 'contact')}
+            onClick={() => scrollToSection('contact')}
           >
             Contact
           </AnimatedLink>
@@ -162,7 +172,10 @@ export default function Header() {
                   activeSection === menuItems[index].id
                 )}
 
-                onClick={() => setMenuOpen(false)}
+                onClick={() => {
+                  scrollToSection(menuItems[index].id)
+                  setMenuOpen(false)
+                }}
               >
                 {menuItems[index].name}
               </AnimatedLink>
