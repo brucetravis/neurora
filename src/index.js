@@ -7,17 +7,20 @@ import Header from './components/header/Header';
 import Footer from './components/footer/Footer'
 import PricingProvider from './contexts/PricingProvider';
 import ActiveProvider from './contexts/active/ActiveContext';
+import ScrollProvider from './components/contexts/scrollContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <ActiveProvider>
       <PricingProvider>
-        <BrowserRouter>
-          <Header />
-          <App />
-          <Footer />
-        </BrowserRouter>
+        <ScrollProvider>
+          <BrowserRouter>
+            <Header />
+            <App />
+            <Footer />
+          </BrowserRouter>
+        </ScrollProvider>
       </PricingProvider>
     </ActiveProvider>
   </React.StrictMode>
