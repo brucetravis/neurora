@@ -20,10 +20,10 @@ export default function Header() {
   // state to track the page position on scroll
   const [ lastScrollY, setLastScrollY ] = useState(0) // initial state is 0
 
-  // useEffect to keep watch of teh page position on scroll
+  // useEffect to keep watch of the page position on scroll
   useEffect(() => {
     // mobile logic
-    if (menuOpen) return // exit theh function
+    if (menuOpen) return // exit the function
 
     // function to keep track of the page position on scroll
     const handleScroll = () => {
@@ -41,10 +41,10 @@ export default function Header() {
 
       setLastScrollY(currentScrollY)
     }
-
     
-    // Track the scrol event through an event listener
+    // Track the scrollj event through an event listener
     window.addEventListener("scroll", handleScroll)
+    
     // clean up
     return () => window.removeEventListener("scroll", handleScroll)
 
@@ -99,7 +99,12 @@ export default function Header() {
     >
       <nav className="navbar">
         <div className="logo">
-          <Link to="/">Neurora</Link>
+          <Link to="/">
+            <img 
+              src={require('../../images/neurora-removebg-preview.png')}
+              alt="Neurora"
+            />
+          </Link>
         </div>
         <div className="nav-links">
           <AnimatedLink 
