@@ -1,22 +1,36 @@
-header {
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2px 20px;
     position: fixed;
     top: 0;
-    left: 0;
-    right: 0;
+    width: 100%;
     z-index: 1000;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
     background: rgba(7, 3, 10, 0.7);
     backdrop-filter: blur(12px);
-    transition: all 0.25s ease;
     overflow: visible;
 }
 
+
+.header.show {
+    transform: translateY(0);
+}
+
+.header.hide {
+    transform: translateY(-100%);
+}
+
+
 /* full height on scroll UP */
-.header-expanded .navbar {
+.header.show .navbar {
     padding: 1.4rem 2rem;
 }
 
 /* smaller height on scroll DOWN */
-.header-shrink .navbar {
+.header.hide .navbar {
     padding: 0.6rem 2rem;
     background: rgba(7, 3, 10, 0.9);
 }
@@ -176,6 +190,13 @@ header {
         top: 20px;
         right: 10px;
         z-index: 1000
+    }
+    
+}
+
+@media screen and (max-width: 468px) {
+    .navbar .btn-primary {
+        display: none
     }
 }
 
