@@ -10,7 +10,7 @@ export const useActive = () => useContext(ActiveContext)
 export default function ActiveProvider({children}) {
 
     // state to observe which section is active
-    const [ activeSection, setActiveSection ] = useState('hero')
+    const [ activeSection, setActiveSection ] = useState('hero') // current section is the hero section
 
     return(
         <ActiveContext.Provider value={{ activeSection, setActiveSection }}>

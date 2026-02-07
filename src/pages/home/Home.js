@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect } from 'react'
 import './Home.css'
 import Hero from './home-components/hero/Hero'
 import About from './home-components/about/About'
@@ -7,28 +7,27 @@ import WhyUs from './home-components/whyus/WhyUs'
 import Pricing from './home-components/pricing/Pricing'
 import Contact from './home-components/contact/Contact'
 import { useActive } from '../../contexts/active/ActiveContext'
+import { useScrollRefs } from '../../contexts/scroll/ScrollContext'
 
 export default function Home() {
 
   const { setActiveSection } = useActive()
 
-  const heroRef = useRef()
-  const aboutRef = useRef()
-  const servicesRef = useRef()
-  const whyUsRef = useRef()
-  const pricingRef = useRef()
-  const contactRef = useRef()
+  // get the scroll references from the context
+  const { sectionRefs } = useScrollRefs()
 
+  // get each section id
+  const { hero, about, services, whyUs, pricing, contact } = sectionRefs
 
   useEffect(() => {
 
     const sections = [
-      { ref: heroRef, id: 'hero' },
-      { ref: aboutRef, id: 'about' },
-      { ref: servicesRef, id: 'services' },
-      { ref: whyUsRef, id: 'whyus' },
-      { ref: pricingRef, id: 'pricing' },
-      { ref: contactRef, id: 'contact' }
+      { ref: hero, id: 'hero' },
+      { ref: about, id: 'about' },
+      { ref: services, id: 'services' },
+      { ref: whyUs, id: 'whyUs' },
+      { ref: pricing, id: 'pricing' },
+      { ref: contact, id: 'contact' }
     ]
 
     const observer = new IntersectionObserver(
@@ -39,6 +38,7 @@ export default function Home() {
           }
         })
       },
+
       { threshold: [0.25, 0.5, 0.75] } // triggers when 50% of the section is visible 
     )
 
@@ -50,11 +50,12 @@ export default function Home() {
     })
 
     return () => observer.disconnect()
-  }, [])
+
+  }, [ hero, about, services, whyUs, pricing, contact, setActiveSection ])
 
   useEffect(() => {
     
-    // deay to ensure browser layout is ready before scrolling
+    // delay to ensure browser layout is ready before scrolling
     const timer = setTimeout(() => {
       window.scrollTo({ top: 0, left: 0, smooth: 0 })
     }, 0)
@@ -64,12 +65,12 @@ export default function Home() {
 
   return (
     <div>
-      <section ref={heroRef}><Hero /></section>
-      <section ref={aboutRef}><About /></section>
-      <section ref={servicesRef}><Services /></section>
-      <section ref={whyUsRef}><WhyUs /></section>
-      <section ref={pricingRef}><Pricing /></section>
-      <section ref={contactRef}><Contact /></section>
+      <section ref={hero}><Hero /></section>
+      <section ref={about}><About /></section>
+      <section ref={services}><Services /></section>
+      <section ref={whyUs}><WhyUs /></section>
+      <section ref={pricing}><Pricing /></section>
+      <section ref={contact}><Contact /></section>
     </div>
   )
 }

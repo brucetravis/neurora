@@ -6,16 +6,19 @@ import { BrowserRouter } from 'react-router-dom'
 import Header from './components/header/Header';
 import ActiveProvider from './contexts/active/ActiveContext';
 import Footer from './components/footer/Footer';
+import ScrollProvider from './contexts/scroll/ScrollContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <ActiveProvider>
-      <BrowserRouter>
-      <Header />
-        <App />
-      <Footer />
-      </BrowserRouter>
+      <ScrollProvider>
+        <BrowserRouter>
+          <Header />
+            <App />
+          <Footer />
+        </BrowserRouter>
+      </ScrollProvider>
     </ActiveProvider>
   </React.StrictMode>
 );
