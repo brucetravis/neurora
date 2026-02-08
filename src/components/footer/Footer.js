@@ -32,16 +32,25 @@ export default function Footer() {
                         className='phone'
                     >
                         <Phone size={25} stroke='#c87cff' />
-                        <span>Phone: +1 (123) 456-7890</span>
+                        <span>Phone: +254 (079) 376-4742</span>
                     </div>
                 </div>
 
             </div>
 
             <div className="footer-social">
-                <FaInstagram />
-                <FaLinkedin />
-                <FaXTwitter />
+                <FaInstagram 
+                    onClick={() => window.open('https://www.instagram.com/')}
+                />
+
+                <FaLinkedin 
+                    onClick={() => window.open('https://www.linkedin.com/feed/')}
+                />
+
+                <FaXTwitter 
+                    onClick={() => window.open('https://x.com/')}
+                />
+
                 <FaFacebookF />
             </div>
         </div>

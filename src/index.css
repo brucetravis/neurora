@@ -115,3 +115,33 @@ img {
 .mb-1 { margin-bottom: 0.5rem; }
 .mb-2 { margin-bottom: 1rem; }
 .mb-3 { margin-bottom: 1.5rem; }
+
+
+/* Main toast card */
+.Toastify__toast {
+  background: #2a173a;     /* your dark purple */
+  color: #ffffff;          /* white text */
+  border-radius: 10px;
+  font-family: inherit;
+}
+
+/* Success toast */
+.Toastify__toast--success {
+  border-left: 5px solid #8d4cbb;   /* neon purple */
+}
+
+/* Error toast */
+.Toastify__toast--error {
+  border-left: 5px solid #ff4d4d;
+}
+
+/* Info toast */
+.Toastify__toast--info {
+  border-left: 5px solid #4da6ff;
+}
+
+/* Progress bar */
+.Toastify__progress-bar {
+  background: #8d4cbb;  /* purple progress bar */
+}
+

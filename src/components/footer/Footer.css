@@ -1,12 +1,10 @@
 .footer {
   background: linear-gradient(180deg, #07030a 0%, #0f0420 45%, #13061a 100%);
   color: #d2d8e5;
-  padding: 50px 50px 30px;
-  height: 50vh;
+  padding: 50px;
 }
 
 .footer-container {
-  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -15,8 +13,6 @@
 .footer-brand h1 {
   font-size: 50px;
   color: #c87cff;
-  margin-top: 5vh;
-  margin-bottom: 8px;
 }
 
 .footer-brand p {
@@ -28,15 +24,15 @@
 }
 
 .contacts-div {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 
 .contacts-div  .contacts-div-content {
-    display: flex;
-    gap: 50px;
-    justify-content: space-between;
+  display: flex;
+  gap: 25px;
+  justify-content: space-between;
 }
 
 .contacts-div h3 {
@@ -48,10 +44,10 @@
   color: #c87cff;
 }
 
-.contacts-div .email,
-.contacts-div .phone {
-    display: flex;
-    gap: 10px;
+.contacts-div .contacts-div-content .email,
+.contacts-div .contacts-div-content .phone {
+  display: flex;
+  gap: 10px;
 }
 
 
@@ -131,11 +127,15 @@
 }
 
 /* Mobile responsiveness */
-@media (max-width: 990px) {
+@media (max-width: 992px) {
+    .footer {
+      flex-direction: column;
+    }
+    
     .footer-container {
-        flex-direction: column;
-        gap: 20px;
-        align-items: stretch;
+      flex-direction: column;
+      gap: 20px;
+      align-items: stretch;
     }
 
     .contacts-div  .contacts-div-content {
