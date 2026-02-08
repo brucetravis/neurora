@@ -1,6 +1,7 @@
 import React from 'react'
 import './About.css'
 import RobotGif from '../../../../videos/robot-unscreen.gif'
+
 import { useSpring, animated, useInView } from '@react-spring/web'
 
 export default function About() {

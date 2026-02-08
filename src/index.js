@@ -7,7 +7,8 @@ import Header from './components/header/Header';
 import Footer from './components/footer/Footer'
 import PricingProvider from './contexts/PricingProvider';
 import ActiveProvider from './contexts/active/ActiveContext';
-import ScrollProvider from './components/contexts/scrollContext';
+import Footer from './components/footer/Footer';
+import ScrollProvider from './contexts/scroll/ScrollContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -17,7 +18,7 @@ root.render(
         <ScrollProvider>
           <BrowserRouter>
             <Header />
-            <App />
+              <App />
             <Footer />
           </BrowserRouter>
         </ScrollProvider>

@@ -7,7 +7,7 @@ import WhyUs from './home-components/whyus/WhyUs'
 import Pricing from './home-components/pricing/Pricing'
 import Contact from './home-components/contact/Contact'
 import { useActive } from '../../contexts/active/ActiveContext'
-import { useScrollRefs } from '../../components/contexts/scrollContext'
+import { useScrollRefs } from '../../contexts/scroll/ScrollContext'
 
 export default function Home() {
 
@@ -39,12 +39,11 @@ export default function Home() {
         })
       },
 
-      { threshold: [0.25, 0.5, 0.75] } // triggers when 50% of the section is visible 
-    )
+      { threshold: 0 }
 
     sections.forEach(section => {
       if (section.ref.current) {
-        section.ref.current.id = section.id //assign an Id for teh observer
+        section.ref.current.id = section.id // assign an Id for the observer
         observer.observe(section.ref.current)
       }
     })
