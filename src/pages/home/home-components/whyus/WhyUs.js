@@ -51,10 +51,10 @@ export default function WhyUs() {
 
   // Points for trail animation
   const points = [
-    'Cutting-edge AI solutions',
-    'Streamlined business automation',
-    'Scalable and robust software',
-    'Expert support & consultation'
+    'Cutting-edge AI-powered software solutions',
+    'Streamlined business automation and workflows',
+    'Scalable and robust smart software',
+    'Expert consultation and AI system support'
   ]
 
   // React Spring for smooth, non-conflicting animations
@@ -75,14 +75,6 @@ export default function WhyUs() {
   })
 
 
-  // // React Spring for title animation
-  // const titleSpring = useSpring({
-  //   opacity: inView ? 1 : 0,
-  //   transform: inView ? 'translateY(0px)' : 'translateY(20px)',
-  //   config: { tension: 200, friction: 20 },
-  //   delay: 100
-  // })
-
   const titleSpring2 = useSpring({
     opacity: inView ? 1 : 0,
     transform: inView ? 'translateY(0px)' : 'translateY(20px)',
@@ -91,26 +83,23 @@ export default function WhyUs() {
     })
 
 
-    // const trail = useTrail(points.length, {
-    //     opacity: inView ? 1 : 0,
-    //     transform: inView ? 'translateX(0px)' : 'translateX(-20px)',
-    //     config: { mass: 1, tension: 280, friction: 20 },
-    //     delay: 200
-    // })
 
     return (
         <section className="whyus-hero" ref={ref}>
-            <animated.h4 style={{ opacity: titleSpring.opacity, transform: titleSpring.y.to(v => `translateY(${v}px)`) }} className="whyus-title">
+            <animated.h4 
+              style={{ opacity: titleSpring.opacity, transform: titleSpring.y.to(v => `translateY(${v}px)`) }} 
+              className="whyus-title"
+            >
               Why Neurora
             </animated.h4>
 
             <animated.h2 style={titleSpring2} className="whyus-heading">
-              AI-Driven Solutions That Scale <span className="accent">Your Business</span>
+              AI-Powered Software Solutions That Scale <span className="accent">Your Business</span>
             </animated.h2>
 
             <div className="whyus-inner">
               <div className="whyus-left">
-                  <Canvas style={{ width: '100%', height: '400px' }}>
+                  <Canvas style={{ width: '100%', height: '400px', pointerEvents: 'none' }}>
                   <ambientLight intensity={1} />
                   <FloatingGif />
                   </Canvas>
@@ -119,7 +108,7 @@ export default function WhyUs() {
               <div className="whyus-right">
                   {trail.map((props, index) => (
                     <animated.div key={index} style={props} className="whyus-point">
-                        {points[index]}
+                      {points[index]}
                     </animated.div>
                   ))}
               </div>

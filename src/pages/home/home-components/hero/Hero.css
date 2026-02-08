@@ -9,7 +9,7 @@
   background: radial-gradient(circle at 20% 50%, rgba(100, 0, 150, 0.3), transparent 70%),
               radial-gradient(circle at 80% 50%, rgba(200, 100, 255, 0.2), transparent 70%),
               #000;
-  overflow: hidden;
+  overflow: hidden ;
 }
 
 .hero:hover {
@@ -80,7 +80,7 @@
   color: #fff;
 }
 
-.hero h1 .highlight {
+.hero .highlight {
   color: #c87cff;
   text-shadow: 0 0 15px rgba(200, 124, 255, 0.8);
 }

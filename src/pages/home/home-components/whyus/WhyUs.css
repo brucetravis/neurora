@@ -1,27 +1,14 @@
+html, body {
+  overflow-x: hidden;
+  touch-action: pan-y;
+}
+
 .whyus-hero {
   position: relative;
   padding: 6rem 1.5rem;
   overflow: hidden;
   color: #fff;
-  /* background: linear-gradient(180deg, #07030a 0%, #0f0420 100%); */
 }
-
-
-/* ceiling glow (top-centered)
-.whyus-hero::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  height: 250px;
-  /* background: radial-gradient(ellipse at center, rgba(200,124,255,0.18), transparent 40%); 
-  background: radial-gradient(ellipse at center, rgb(214, 171, 255), transparent 50%);
-  filter: blur(80px);
-  z-index: 0;
-  pointer-events: none;
-} */
 
 .whyus-hero::after {
   content: '';
@@ -32,7 +19,6 @@
   width: 400px;
   height: 400px;
   background: radial-gradient(circle, rgb(200, 124, 255), transparent 60%);
-  /* background: radial-gradient(circle, rgb(155, 255, 124), transparent 60%); */
   filter: blur(120px);
   z-index: 0;
   pointer-events: none;
@@ -61,7 +47,6 @@
 
 .whyus-heading .accent {
   color: #c87cff;
-  /* text-shadow: 0 0 18px rgba(200,124,255,0.85); */
   text-shadow: 0 0 18px rgba(16, 4, 26, 0.85);
 }
 
@@ -98,12 +83,8 @@
     text-shadow: 0 6px 30px rgba(19,6,34,0.6);
   }
 
+  
   .whyus-inner {
-    /* display: flex;
-    gap: 3rem;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto; */
     flex-direction: column;
   }
 
@@ -119,6 +100,16 @@
   .whyus-left, .whyus-right {
     flex: 1;
     width: 100%;
-    /* background-color: red; */
   }
 }
+
+@media (max-width: 768px) {
+  .whyus-hero {
+    overflow: visible;
+  }
+
+  .whyus-hero::after {
+    filter: blur(60px);
+  }
+}
+

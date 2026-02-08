@@ -2,7 +2,7 @@
   position: relative;
   padding: 6rem 1.5rem;
   color: #fff;
-  overflow: hidden;
+  overflow: hidden ;
 }
 
 .services-hero::before {
@@ -67,7 +67,6 @@
 
 .services-lead {
   color: rgba(230,226,240,0.92);
-  max-width: 65ch;
   font-size: 1.125rem;
   line-height: 1.7;
   margin: 0 auto 3rem auto;
