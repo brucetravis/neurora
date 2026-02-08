@@ -9,7 +9,6 @@ const PricingContext = createContext()
 export const usePricing = () => useContext(PricingContext)
 
 
-// export default
 export default function PricingProvider({ children }) {
 
     // state to open and close the modal
