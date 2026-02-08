@@ -33,7 +33,7 @@ export default function ScrollProvider({ children }) {
         const section = sectionRefs[id]
 
         // if the section matches teh current section being clicked
-        if (section && sectionRefs.current) {
+        if (section && section.current) {
             // scroll to the section
             section.current.scrollIntoView({ behavior: 'smooth' })
         }

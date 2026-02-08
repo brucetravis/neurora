@@ -3,12 +3,17 @@ import './Header.css'
 import { Link } from 'react-router-dom'
 import { animated } from '@react-spring/web'
 import { useActive } from '../../contexts/active/ActiveContext'
+import { Menu, X } from 'lucide-react'
+import { useScrollRefs } from '../../contexts/scroll/ScrollContext'
 // import { Menu, X } from 'lucide-react'
 
 export default function Header() {
 
   // get the activeSection state from the context
   const { activeSection } = useActive()
+
+  // import teh scroll context in the header 
+  const { scrollToSection } = useScrollRefs()
 
   // state to track the last scrolling position
   const [ lastScrollY, setLastScrollY ] = useState(0)
@@ -17,20 +22,23 @@ export default function Header() {
   const [ show, setShow ] = useState(true) // the header is initilly visible
 
   // state to open and close the menu on mobile
-  // const [ menuOpen, setMenuOpen] = useState(false) // initially, the menu is closed
+  const [ menuOpen, setMenuOpen] = useState(false) // initially, the menu is closed
 
   // header links on phone
-  // const menuItems = [
-  //   { name: 'Home', path: '/', id: 'hero' },
-  //   { name: 'About', path: '/about', id: 'about' },
-  //   { name: 'Services', path: '/services', id: 'services' },
-  //   { name: 'Why Us', path: '/whyus', id: 'whyus' },
-  //   { name: 'Prices', path: '/pricing', id: 'pricing' },
-  //   { name: 'Contact', path: '/contact', id: 'contact' }
-  // ]
+  const menuItems = [
+    { name: 'Home', path: '/', id: 'hero' },
+    { name: 'About', path: '/about', id: 'about' },
+    { name: 'Services', path: '/services', id: 'services' },
+    { name: 'Why Us', path: '/whyus', id: 'whyus' },
+    { name: 'Prices', path: '/pricing', id: 'pricing' },
+    { name: 'Contact', path: '/contact', id: 'contact' }
+  ]
 
   // useEffect to apply side effects when the user scrolls up and down
   useEffect(() => {
+
+    // on mobile exit the function
+    if (menuOpen) return
 
     // function to appy the scroll effect
     const handleScroll = () => {
@@ -57,7 +65,7 @@ export default function Header() {
     // clean up the listener
     return () => window.removeEventListener('scroll', handleScroll)
 
-  }, [lastScrollY]) // watch out for the last scrolled position
+  }, [lastScrollY, menuOpen]) // watch out for the last scrolled position
 
 
   // function containing the link styles for when a section is active and inActive
@@ -76,78 +84,109 @@ export default function Header() {
 
 
   return (
-    <header
-      className={ show ? "show" : "hide" }
-    >
-      <nav
-        className='navbar'
+    <>
+      <header
+        className={ show ? "show" : "hide" }
       >
-        <div
-          className='logo'
+        <nav
+          className='navbar'
         >
-          <Link to="/">
-            <img 
-              src={require('../../images/neurora-removebg-preview.png')}
-              alt="Neurora"
-            />
-          </Link>
-        </div>
+          <div
+            className='logo'
+          >
+            <Link to="/">
+              <img 
+                // src={require('../../images/neurora-removebg-preview.png')}
+                src={require('../../images/logo_no_bg.png')}
+                alt="Neurora"
+              />
+            </Link>
+          </div>
 
+          <div
+            className='nav-links'
+          >
+            <AnimatedLink
+              style={getLinkSpring(activeSection === 'hero')}
+              onClick={() => scrollToSection('hero')}
+            >
+              Home
+            </AnimatedLink>
+
+            <AnimatedLink
+              style={getLinkSpring(activeSection === 'about')}
+              onClick={() => scrollToSection('about')}
+            >
+              About
+            </AnimatedLink>
+
+            <AnimatedLink
+              style={getLinkSpring(activeSection === 'services')}
+              onClick={() => scrollToSection('services')}
+            >
+              Services
+            </AnimatedLink>
+
+            <AnimatedLink
+              style={getLinkSpring(activeSection === 'whyUs')}
+              onClick={() => scrollToSection('whyUs')}
+            >
+              Why Us
+            </AnimatedLink>
+
+            <AnimatedLink
+              style={getLinkSpring(activeSection === 'pricing')}
+              onClick={() => scrollToSection('pricing')}
+            >
+              Prices
+            </AnimatedLink>
+
+            <AnimatedLink
+              style={getLinkSpring(activeSection === 'contact')}
+              onClick={() => scrollToSection('contact')}
+            >
+              Contact
+            </AnimatedLink>
+          </div>
+
+          <div
+            className='hamburger-icon'
+            onClick={() => setMenuOpen(prev => !prev) }
+          >
+            {menuOpen ? <X size={25} stroke="#fff" /> : <Menu size={25} stroke="#fff" /> }
+          </div>
+          
+          <div>
+            <button
+              className='get-started'
+              onClick={() => window.open('https://calendly.com/neurora4/30min', '_blank')}
+            >
+              Get Started
+            </button>
+          </div>
+        </nav>
+      </header>
+
+      {menuOpen && (
         <div
-          className='nav-links'
+          className='mobile-menu'
         >
-          <AnimatedLink
-            style={getLinkSpring(activeSection === 'hero')}
-          >
-            Home
-          </AnimatedLink>
-
-          <AnimatedLink
-            style={getLinkSpring(activeSection === 'about')}
-          >
-            About
-          </AnimatedLink>
-
-          <AnimatedLink
-            style={getLinkSpring(activeSection === 'services')}
-          >
-            Services
-          </AnimatedLink>
-
-          <AnimatedLink
-            style={getLinkSpring(activeSection === 'whyUs')}
-          >
-            Why Us
-          </AnimatedLink>
-
-          <AnimatedLink
-            style={getLinkSpring(activeSection === 'pricing')}
-          >
-            Prices
-          </AnimatedLink>
-
-          <AnimatedLink
-            style={getLinkSpring(activeSection === 'contact')}
-          >
-            Contact
-          </AnimatedLink>
-        </div>
-
-        {/* {menuOpen ? (
-          <Menu
-            size={25}
-            stroke='#fff'
-            onClick={() => setMenuOpen(true)}
+          <X 
+            size={25} 
+            stroke="#fff" 
+            className="close-btn" 
+            onClick={() => setMenuOpen(prev => !prev)}
           />
-        ) : (
-          <X
-            size={25}
-            stroke="fff"
-            onClick={() => setMenuOpen(false)}
-          />
-        )} */}
-        
-        <div>
+
+          {menuItems.map(item => (
+            <Link 
+              key={item.id}
+              onClick={() => setMenuOpen(prev => !prev)}
+            >
+              {item.name}
+            </Link>
+          ))}
+
           <button
             className='get-started'
             onClick={() => window.open('https://calendly.com/neurora4/30min', '_blank')}
@@ -155,16 +194,7 @@ export default function Header() {
             Get Started
           </button>
         </div>
-
-        {/* {menuItems.map((item) => (
-          <div
-            key={item.id}
-            className='mobile-menu'
-          >
-            {item.name}
-          </div>
-        ))} */}
-      </nav>
-    </header>
+      )}
+    </>
   )
 }
