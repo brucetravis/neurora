@@ -69,17 +69,17 @@ export default function Pricing() {
     // };
 
 
-    // // function to handle the plans
-    // const handleStandardPlans = (plan) => {
-    //     setSelectedPlan(plan);
-    //     setOpenStandardModal(true);
-    // }
+    // function to handle the plans
+    const handleStandardPlans = (plan) => {
+        setSelectedPlan(plan);
+        setOpenStandardModal(true);
+    }
 
-    // // function to handle the plans
-    // const handleQuotationPlans = (plan) => {
-    //     setSelectedPlan(plan);
-    //     setOpenQuotationModal(true)
-    // }
+    // function to handle the plans
+    const handleQuotationPlans = (plan) => {
+        setSelectedPlan(plan);
+        setOpenQuotationModal(true)
+    }
 
     return (
         <section className="pricing-section" ref={ref}>
@@ -145,7 +145,7 @@ export default function Pricing() {
                                                 <li key={idx}>{feature}</li>
                                             ))}
                                         </ul>
-                                        {/* <div className="card-cta">
+                                        <div className="card-cta">
                                             <button 
                                                 className={`btn primary ${i === 1 ? 'btn-ghost' : ''}`}
                                                 onClick={() => handleStandardPlans(plan)}
@@ -159,7 +159,7 @@ export default function Pricing() {
                                             >
                                                 Request Quote
                                             </button>
-                                        </div> */}
+                                        </div>
                                     </div>
                                 </animated.article>
                             ))}
