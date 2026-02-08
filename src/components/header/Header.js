@@ -5,13 +5,14 @@ import { animated } from '@react-spring/web'
 import { useActive } from '../../contexts/active/ActiveContext'
 import { Menu, X } from 'lucide-react'
 import { useScrollRefs } from '../../contexts/scroll/ScrollContext'
+// import { Menu, X } from 'lucide-react'
 
 export default function Header() {
 
   // get the activeSection state from the context
   const { activeSection } = useActive()
 
-  // import the scroll context in the header 
+  // import teh scroll context in the header 
   const { scrollToSection } = useScrollRefs()
 
   // state to track the last scrolling position
@@ -19,9 +20,6 @@ export default function Header() {
 
   // state to display and hide the header
   const [ show, setShow ] = useState(true) // the header is initilly visible
-
-  // get the sctollToSection function from the header so that a user can scroll to a section when a link is clicked
-  const { scrollToSection } = useScrollRefs()
 
   // state to open and close the menu on mobile
   const [ menuOpen, setMenuOpen] = useState(false) // initially, the menu is closed
@@ -187,7 +185,7 @@ export default function Header() {
             >
               {item.name}
             </Link>
-
+          ))}
 
           <button
             className='get-started'
