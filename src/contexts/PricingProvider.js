@@ -9,7 +9,6 @@ const PricingContext = createContext()
 export const usePricing = () => useContext(PricingContext)
 
 
-// export default
 export default function PricingProvider({ children }) {
 
     // state to open and close the modal
@@ -65,42 +64,34 @@ export default function PricingProvider({ children }) {
         }
     }
 
-    // verify payments using the reference
-    const verifyPayment = async () => {
+   // verify payments using the reference
+const verifyPayment = async () => {
+    try {
+        const reference = localStorage.getItem('payment_reference')
 
-        try {
-            // get the reference stored in localStorage
-            const reference = localStorage.getItem('payment_reference')
-
-            // check if there is a reference stored
-            if (!reference) {
-                console.error('No payment reference found.')
-                return toast.error('No payment reference found')
-            }
-
-            // send the payment reference back to the backend to knnow if the payment was a success or failure
-            const paymentResult = await axios.post(`http://localhost:5000/paymentAPI/verifyPayment/${reference}`)
-
-            // send success messages if the payments were successfully verified
-            if (paymentResult.data.data.status === 'success') {
-                // clear local storage if it was successful
-                localStorage.removeItem('payment_reference')
-                //send a success message
-                toast.success('Payment verified successfully.')
-                return true
-            } else {
-                toast.error('Payment verification Failed.')
-                return false
-            }
-
-
-        } catch (err) {
-            console.error('Payment verification failed: ', err)
-            toast.error('Payment verification failed. Please contact support.')
-            throw err
+        if (!reference) {
+            console.error('No payment reference found.')
+            return toast.error('No payment reference found')
         }
 
+        // CHANGED: POST to GET
+        const paymentResult = await axios.get(`http://localhost:5000/paymentAPI/verifyPayment/${reference}`)
+
+        if (paymentResult.data.data.status === 'success') {
+            localStorage.removeItem('payment_reference')
+            toast.success('Payment verified successfully.')
+            return true
+        } else {
+            toast.error('Payment verification Failed.')
+            return false
+        }
+
+    } catch (err) {
+        console.error('Payment verification failed: ', err)
+        toast.error('Payment verification failed. Please contact support.')
+        throw err
     }
+}
 
 
     useEffect(() => {

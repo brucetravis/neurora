@@ -32,7 +32,7 @@ export default function Footer() {
                         className='phone'
                     >
                         <Phone size={25} stroke='#c87cff' />
-                        <span>Phone: +254 (079) 376-4742</span>
+                        <span>Phone: +1 (123) 456-7890</span>
                     </div>
                 </div>
 
