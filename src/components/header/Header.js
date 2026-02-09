@@ -96,7 +96,6 @@ export default function Header() {
           >
             <Link to="/">
               <img 
-                // src={require('../../images/neurora-removebg-preview.png')}
                 src={require('../../images/logo_no_bg.png')}
                 alt="Neurora"
               />
