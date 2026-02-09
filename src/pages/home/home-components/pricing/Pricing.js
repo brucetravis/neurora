@@ -90,19 +90,19 @@ export default function Pricing() {
                         <h2 className="pricing-heading">EXPLORE OUR AFFORDABLE AI AND SMART SOFTWARE PLANS</h2>
 
                         <div className="currency-toggle">
-                        <div className="toggle-label">Currency</div>
-                        <div className="toggle-buttons" role="tablist" aria-label="Currency switch">
-                            {['USD', 'EUR', 'KES'].map((c) => (
-                                <button
-                                    key={c}
-                                    className={`toggle-btn ${currency === c ? 'active' : ''}`}
-                                    onClick={() => setCurrency(c)}
-                                    aria-pressed={currency === c}
-                                >
-                                    {c}
-                                </button>
-                            ))}
-                        </div>
+                            <div className="toggle-label">Currency</div>
+                            <div className="toggle-buttons" role="tablist" aria-label="Currency switch">
+                                {['USD', 'EUR', 'KES'].map((c) => (
+                                    <button
+                                        key={c}
+                                        className={`toggle-btn ${currency === c ? 'active' : ''}`}
+                                        onClick={() => setCurrency(c)}
+                                        aria-pressed={currency === c}
+                                    >
+                                        {c}
+                                    </button>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </animated.div>
@@ -136,6 +136,9 @@ export default function Pricing() {
 
                                     <div className="card-body">
                                         <h4 className="card-title">{plan.name}</h4>
+
+                                        <p>{plan.description}</p>
+
                                         <div className="price">
                                             <span className="price-amount">{format(plan.usd)}</span>
                                             <span className="price-note">Starting from</span>
@@ -145,7 +148,7 @@ export default function Pricing() {
                                                 <li key={idx}>{feature}</li>
                                             ))}
                                         </ul>
-                                        <div className="card-cta">
+                                        {/* <div className="card-cta">
                                             <button 
                                                 className={`btn primary ${i === 1 ? 'btn-ghost' : ''}`}
                                                 onClick={() => handleStandardPlans(plan)}
@@ -159,7 +162,7 @@ export default function Pricing() {
                                             >
                                                 Request Quote
                                             </button>
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </animated.article>
                             ))}
@@ -193,9 +196,11 @@ export default function Pricing() {
 
                             <div className="card-body">
                                 <h4 className="card-title">{plan.name}</h4>
+
+                                <p>{plan.description}</p>
                                 <div className="price">
-                                <span className="price-amount">{format(plan.usd)}</span>
-                                <span className="price-note">Starting from</span>
+                                    <span className="price-amount">{format(plan.usd)}</span>
+                                    <span className="price-note">Starting from</span>
                                 </div>
                                 <ul className="features">
                                     {plan.features.map((feature, idx) => (
