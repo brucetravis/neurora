@@ -177,29 +177,14 @@ export default function Header() {
             </animated.div>
           ))}
 
-          <animated.div style={trail[0]}>
-            <button 
-              className="btn-primary"
-              onClick={() => {
-                window.open('https://calendly.com/neurora4/30min', '_blank')
-                setMenuOpen(false);
-              }}
-            >
-              Get Started
-            </button>
-          </animated.div>
-          
-        </animated.div>
-
-        <button 
-          className="btn-primary"
-          onClick={() => window.open('https://calendly.com/neurora4/30min', '_blank')}
-        >
-          Get Started
-        </button>
-        
-      </nav>
-    </header>
-  );
+          <button
+            className='get-started'
+            onClick={() => window.open('https://calendly.com/neurora4/30min', '_blank')}
+          >
+            Get Started
+          </button>
+        </div>
+      )}
+    </>
+  )
 }
-
