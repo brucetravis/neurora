@@ -12,7 +12,7 @@ export default function Header() {
   // get the activeSection state from the context
   const { activeSection } = useActive()
 
-  // import teh scroll context in the header 
+  // import the scroll context in the header 
   const { scrollToSection } = useScrollRefs()
 
   // state to track the last scrolling position
