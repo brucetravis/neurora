@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import './LoadingPage.css'
-import gsap from 'gsap'
+import { gsap } from 'gsap'
 
 export default function LoadingPage({ onFinish}) {
 

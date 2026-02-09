@@ -9,7 +9,6 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect, useState } from 'react';
 import LoadingPage from './components/loadingpage/LoadingPage';
-import ChatWidget from './components/chatwidget/ChatWidget';
 
 function App() {
 
@@ -38,8 +37,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
         </Routes>
-
-        <ChatWidget />
 
         {/* Overlay loading page */}
         {showLoading && <LoadingPage onFinish={() => setShowLoading(false)} />}
