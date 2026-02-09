@@ -86,18 +86,26 @@ export default function Header() {
   // })
 
   return (
-    <header 
-      // style={headerSpring}
-      className={ showHeader ? 'header-expanded' : 'header-shrink'}
-    >
-      <nav className="navbar">
-        <div className="logo">
-          <Link to="/">Neurora</Link>
-        </div>
-        <div className="nav-links">
-          <AnimatedLink 
-            to="/"
-            style={getLinkSpring(activeSection === 'hero')}
+    <>
+      <header
+        className={ show ? "show" : "hide" }
+      >
+        <nav
+          className='navbar'
+        >
+          <div
+            className='logo'
+          >
+            <Link to="/">
+              <img 
+                src={require('../../images/logo_no_bg.png')}
+                alt="Neurora"
+              />
+            </Link>
+          </div>
+
+          <div
+            className='nav-links'
           >
             Home
           </AnimatedLink>
