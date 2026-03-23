@@ -76,13 +76,12 @@ export default function About() {
             Scaling Your Business With <span className="accent">Intelligent Software</span>
           </h2>
 
-          <p 
-            className="about-lead"
-          >
-            Neurora is a <strong>Software and Robotics company</strong> that builds intelligent software and <strong>AI-powered solutions</strong> 
-            to help <strong className="accent">African businesses</strong> adopt, manage, and optimize AI features. Our platform guides businesses on which AI tools to use, tracks performance, provides actionable insights, and recommends strategic actions to maximize growth and efficiency. 
-            From entry-level adoption guidance to subscription management, real-time performance analytics, and strategic growth recommendations, 
-            Neurora empowers startups, SMEs, and enterprises to confidently <strong className='accent'>Adopt AI</strong> into their workflows, make data-driven decisions, and achieve measurable results.
+          <p className="about-lead">
+            Neurora is a <strong>Software and Robotics company</strong> leveraging <strong>Artificial Intelligence</strong> 
+            to drive innovation across Africa. Our platform helps <strong className="accent">African businesses</strong> adopt 
+            and integrate AI efficiently, offering guidance on the right tools, tracking performance, and delivering actionable insights. 
+            From early-stage adoption to subscription management, real-time analytics, and strategic growth recommendations, Neurora empowers 
+            startups, SMEs, and enterprises to make data-driven decisions, optimize operations, and achieve measurable results.
           </p>
         </animated.div>
       </div>
