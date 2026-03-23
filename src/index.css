@@ -1,6 +1,5 @@
 * {
   margin: 0;
-  overflow-x: hidden
 }
 
 body {
@@ -11,6 +10,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: linear-gradient(180deg, #07030a 0%, #0f0420 45%, #13061a 100%);
+  overflow-x: hidden !important
 }
 
 code {

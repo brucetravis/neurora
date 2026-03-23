@@ -3,6 +3,7 @@ import './Landing.css'
 import Hero from '../../components/sections/hero/Hero'
 import { useScrollRefs } from '../../contexts/scroll/ScrollContext'
 import { useActive } from '../../contexts/active/ActiveContext'
+import About from '../../components/sections/about/About'
 
 export default function Landing() {
     const { setActiveSection } = useActive()
@@ -11,7 +12,7 @@ export default function Landing() {
     const { sectionRefs } = useScrollRefs()
 
     // get each section id
-    const { hero } = sectionRefs
+    const { hero, about } = sectionRefs
 
     useEffect(() => {
 
@@ -43,11 +44,12 @@ export default function Landing() {
 
         return () => observer.disconnect()
 
-    }, [hero])
+    }, [hero, about])
 
   return (
     <div>
         <section ref={hero}><Hero /></section>
+        <section ref={about}><About /></section>
     </div>
   )
 }
