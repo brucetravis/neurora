@@ -14,6 +14,7 @@ export default function ScrollProvider({ children }) {
     const aboutRef = useRef(null)
     const servicesRef = useRef(null)
     const softwareRef = useRef(null)
+    const whyUsRef = useRef(null)
 
     // Map section ids to refs
     const sectionRefs = {
@@ -21,6 +22,7 @@ export default function ScrollProvider({ children }) {
         about: aboutRef,
         services: servicesRef,
         software: softwareRef,
+        whyus: whyUsRef
     }
 
     // function to scrolll to a specific section
