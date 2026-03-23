@@ -5,6 +5,7 @@ import { useScrollRefs } from '../../contexts/scroll/ScrollContext'
 import { useActive } from '../../contexts/active/ActiveContext'
 import About from '../../components/sections/about/About'
 import Services from '../../components/sections/services/Services'
+import Software from '../../components/sections/software/Software'
 
 export default function Landing() {
     const { setActiveSection } = useActive()
@@ -13,7 +14,7 @@ export default function Landing() {
     const { sectionRefs } = useScrollRefs()
 
     // get each section id
-    const { hero, about, services } = sectionRefs
+    const { hero, about, services, software } = sectionRefs
 
     useEffect(() => {
 
@@ -45,13 +46,14 @@ export default function Landing() {
 
         return () => observer.disconnect()
 
-    }, [hero, about, services, setActiveSection])
+    }, [hero, about, services, software, setActiveSection])
 
   return (
     <div className='landing-page'>
         <section ref={hero}><Hero /></section>
         <section ref={about}><About /></section>
         <section ref={services}><Services /></section>
+        <section ref={software}><Software /></section>
     </div>
   )
 }
