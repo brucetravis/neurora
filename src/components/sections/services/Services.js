@@ -6,7 +6,10 @@ import { useInView, useSpring, animated } from '@react-spring/web'
 
 export default function Services() {
 
-    const [ ref, inView ] = useInView({ triggerOnce: true, threshold: 0.2 })
+    const [ ref, inView ] = useInView({ 
+        triggerOnce: false, // trigger when inView and out of view
+        threshold: 0.1 // trigger when 10% visible
+    })
 
     // an array of services
     const services = [
@@ -59,13 +62,6 @@ export default function Services() {
         delay: 200
     });
 
-    // Animate service cards with stagger
-    // const trail = useTrail(services.length, {
-    //     opacity: inView ? 1 : 0,
-    //     transform: inView ? 'translateY(0px)' : 'translateY(20px)',
-    //     config: { mass: 1, tension: 280, friction: 20 },
-    // });
-
     const upSpring = useSpring({
         opacity: inView ? 1 : 0,
         transform: inView ? 'translateY(0%)' : 'translateY(-100%)', // from down
@@ -88,7 +84,7 @@ export default function Services() {
     >
         <animated.h4 
             style={{
-            ...textSpring1
+                ...textSpring1
             }} 
             className='services-kicker'
         >
