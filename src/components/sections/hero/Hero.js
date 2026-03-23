@@ -13,7 +13,7 @@ export default function Hero() {
 
     // function for the hero title spring
     const heroTitleSpring= useSpring({
-        transform: inView ? 'translateY(0px)' : 'translateY(100%)',
+        transform: inView ? 'translateY(0%)' : 'translateY(100%)',
         opacity: inView ? 1 : 0,
         delay: 200, //staggered paragraph comes slightly after the heading
         config: { mass: 1, tension: 80, friction: 25 }
@@ -21,7 +21,7 @@ export default function Hero() {
 
     // function for the text
     const heroTextSpring = useSpring({
-        transform: inView ? 'translateX(0px)' : 'translateX(100%)',
+        transform: inView ? 'translateX(0%)' : 'translateX(100%)',
         opacity: inView ? 1 : 0,
         delay: 200, //staggered paragraph comes slightly after the heading
         config: { mass: 1, tension: 80, friction: 25 }
@@ -55,13 +55,13 @@ export default function Hero() {
       <div className="hero-content">
 
         <animated.h3 style={{
-            ...heroTitleSpring
+          ...heroTitleSpring
         }}>
           Welcome to Neurora
         </animated.h3>
         
         <animated.h1 style={{
-            ...heroTitleSpring
+          ...heroTitleSpring
         }}>
           Helping African Businesses <span className="highlight">Adopt AI</span>
         </animated.h1>
